@@ -1,6 +1,6 @@
 User.destroy_all
 Student.destroy_all
-EslClass.destroy_all
+Course.destroy_all
 Enrollment.destroy_all
 
 user = User.new(
@@ -23,23 +23,23 @@ end
 students_group1 = Student.first(15)
 students_group2 = Student.all - students_group1
 
-esl_class1 = EslClass.create(
+course1 = Course.create(
   name: 'iBT Toefl Summer 2017',
   user: user
 )
 students_group1.each do |student|
   Enrollment.create(
-    esl_class: esl_class1,
+    course: course1,
     student: student
   )
 end
-esl_class2 = EslClass.create(
+course2 = Course.create(
   name: 'Intro to Toefl Summer 2017',
   user: user
 )
 students_group2.each do |student|
   Enrollment.create(
-    esl_class: esl_class2,
+    course: course2,
     student: student
   )
 end
@@ -47,5 +47,5 @@ end
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Student.count} student created"
-puts "#{EslClass.count} classes created"
+puts "#{Course.count} courses created"
 puts "#{Enrollment.count} enrollments created"

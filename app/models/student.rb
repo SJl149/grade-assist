@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
 
   has_many :enrollments
-  has_many :esl_classes, through: :enrollments
+  has_many :courses, through: :enrollments
 end
