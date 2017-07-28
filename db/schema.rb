@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726213142) do
+ActiveRecord::Schema.define(version: 20170728132615) do
+
+  create_table "esl_classes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "esl_classes", ["student_id"], name: "index_esl_classes_on_student_id"
+  add_index "esl_classes", ["user_id"], name: "index_esl_classes_on_user_id"
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name"
+    t.string   "nickname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170726213142) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
+    t.integer  "role"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
