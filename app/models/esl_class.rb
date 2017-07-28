@@ -1,4 +1,6 @@
 class EslClass < ActiveRecord::Base
   belongs_to :user
-  belongs_to :student 
+
+  has_many :enrollments
+  has_many :students, through: :enrollments 
 end

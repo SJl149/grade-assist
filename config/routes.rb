@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'registrations'}
 
   get 'about' => 'welcome#about'
+  resources :esl_classes
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root
-    resources :classes
   end
 
   root 'welcome#index'
