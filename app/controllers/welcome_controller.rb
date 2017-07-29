@@ -8,5 +8,6 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
+    @courses = current_user.courses.where(:current => true)
   end
 end

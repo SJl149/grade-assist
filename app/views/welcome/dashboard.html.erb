@@ -6,36 +6,23 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h3 class="panel-title text-center">iBT Toefl Summer 2017</h3>
-          </div>
-          <div class="panel-body">
-            <h3>Attendance</h3>
-            <h3>Participation</h3>
-            <h3>Homework</h3>
-            <h3>Quizzes</h3>
-            <h3>Comments</h3>
-            <h3><%= link_to "Class Overview", courses_path %></h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h3 class="panel-title text-center">Intro to Toefl Summer 2017</h3>
-          </div>
-          <div class="panel-body">
-            <h3>Attendance</h3>
-            <h3>Participation</h3>
-            <h3>Homework</h3>
-            <h3>Quizzes</h3>
-            <h3>Comments</h3>
-            <h3>Class Overview</h3>
+      <% @courses.each do |course| %>
+        <div class="col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title text-center"><%= course.name %></h3>
+            </div>
+            <div class="panel-body">
+              <h3>Attendance</h3>
+              <h3>Participation</h3>
+              <h3>Homework</h3>
+              <h3>Quizzes</h3>
+              <h3>Comments</h3>
+              <h3><%= link_to "Class Overview", course %></h3>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
