@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726213142) do
+ActiveRecord::Schema.define(version: 20170728191600) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "course_id"
+  end
+
+  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id"
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name"
+    t.string   "nickname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170726213142) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
+    t.integer  "role"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
