@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-
+    @courses = Course.all
   end
 
   def new
@@ -26,6 +26,9 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name)
+    params.require(:course).permit(
+      :name,
+      enrollments_attributes: [:id, :_destroy, :student_id, :course_id],
+      students_attributes: [:id, :_destroy, :name, :nickname])
   end
 end

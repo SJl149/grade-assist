@@ -21,6 +21,7 @@ group :production do
  gem 'bootswatch-rails'
  gem 'figaro'
  gem 'devise'
+ gem 'cocoon', '~> 1.2', '>= 1.2.9'
 
  group :development, :test do
    gem 'byebug'

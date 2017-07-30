@@ -6,10 +6,19 @@
 <th>Quizzes</th>
 <th>Comments</th>
 <form class="form-horizontal">
-  <fieldset>
     <legend>Create a Class</legend>
     <%= form_for @course do |f| %>
       <div class="form-group">
         <%= f.label :name %>
-  </fieldset>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <p><strong>Students:</strong></p>
+        <%= f.fields_for :students do |student| %>
+          <%= render 'student_fields', :f => student %>
+          <%= link_to_add_association 'add student', f, :students %>
+        <% end %>
+      </div>
+      <%= f.submit %>
+    <% end %>
 </form>

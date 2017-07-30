@@ -3,4 +3,7 @@ class Course < ActiveRecord::Base
 
   has_many :enrollments
   has_many :students, through: :enrollments
+
+  accepts_nested_attributes_for :students, :allow_destroy => true
+  accepts_nested_attributes_for :enrollments, :allow_destroy => true
 end
