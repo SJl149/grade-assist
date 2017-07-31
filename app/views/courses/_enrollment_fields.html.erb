@@ -1,0 +1,8 @@
+<div class="nested-fields enrollment-tag-fields">
+  <div class="student_from_list">
+    <%= f.association :student, label: false, collection: Student.order(:name), prompt: 'Choose an existing student' %>
+    <%= link_to_add_association 'Or create new student', f, :student, class: 'btn btn-primary' %>
+    <br>
+    <%= link_to_remove_association 'Remove student', f, class: 'btn btn-warning' %>
+  </div>
+</div>
