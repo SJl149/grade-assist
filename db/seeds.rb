@@ -15,7 +15,8 @@ user.save!
 
 30.times do
   student = Student.new(
-    name: Faker::Name.unique.name,
+    given_name: Faker::Name.unique.first_name,
+    family_name: Faker::Name.unique.last_name,
     nickname: Faker::Ancient.hero + Faker::Number.digit
   )
   student.save!

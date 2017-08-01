@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
     params.require(:course).permit(
       :name,
       enrollments_attributes: [:id, :_destroy, :student_id, :course_id,
-        student_attributes: [:id, :_destroy, :name, :nickname]
+        student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname]
       ])
   end
 end
