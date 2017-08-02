@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   resources :courses
+  resources :daily_grades
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root

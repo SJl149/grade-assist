@@ -3,6 +3,7 @@ Student.destroy_all
 Course.destroy_all
 Enrollment.destroy_all
 
+# Create User
 user = User.new(
   username: 'Scott',
   email: 'sjlteacher@gmail.com',
@@ -13,6 +14,7 @@ user = User.new(
 user.skip_confirmation!
 user.save!
 
+# Create Students
 30.times do
   student = Student.new(
     given_name: Faker::Name.unique.first_name,
@@ -20,10 +22,24 @@ user.save!
     nickname: Faker::Ancient.hero + Faker::Number.digit
   )
   student.save!
+
+  # Create DailyGrades
+  DailyGrade.create(
+    attendance: 2,
+    participation: 1,
+    homework: 2,
+    quiz: 85,
+    comment: "Good work today.",
+    test: 90,
+    student_id: student.id
+  )
 end
 students_group1 = Student.first(15)
 students_group2 = Student.all - students_group1
 
+
+
+# Create Courses
 course1 = Course.create(
   name: 'iBT Toefl Summer 2017',
   user: user
@@ -50,3 +66,4 @@ puts "#{User.count} users created"
 puts "#{Student.count} student created"
 puts "#{Course.count} courses created"
 puts "#{Enrollment.count} enrollments created"
+puts "#{DailyGrade.count} daily_grades created"
