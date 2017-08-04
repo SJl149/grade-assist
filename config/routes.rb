@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :courses
   resources :daily_grades
 
+  get 'attendance' => 'daily_grades#attendance'
+
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root
   end

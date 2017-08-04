@@ -24,6 +24,7 @@ class DailyGradesController < ApplicationController
   end
 
   def attendance
+    @course = Course.first
   end
 
   def class_work

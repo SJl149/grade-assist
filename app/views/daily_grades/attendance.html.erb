@@ -8,21 +8,19 @@
         <tr>
           <th>Students</th>
           <th>Legal Name</th>
-          <th>Attendance</th>
+          <th>Present</th>
+          <th>Late</th>
+          <th>Absent</th>
         </tr>
       </thead>
       <tbody>
         <% @course.students.each do |student| %>
           <tr>
             <td><%= student.nickname %></td>
-            <td><%= student.name %></td>
-            <td>
-              <div class="btn-group btn-group-justified">
-                <%= link_to "Present", class: "btn btn-success" %>
-                <%= link_to "Late", class: "btn btn-warning" %>
-                <%= link_to "Absent", class: "btn btn-danger" %>
-              </div>
-            </td>
+            <td><%= student.family_name %>, <%= student.given_name %></td>
+            <td><a href="#" class="btn btn-success">Present</a></td>
+            <td><a href="#" class="btn btn-warning">Late</a></td>
+            <td><a href="#" class="btn btn-danger">Absent</a></td>
           </tr>
         <% end %>
       </tbody>
