@@ -3,12 +3,12 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   resources :courses
+  get 'attendance' => 'daily_grades#attendance'
+  get 'homework' => 'daily_grades#homework'
 
   resources :students do
     resources :daily_grades
   end
-
-  get 'attendance' => 'daily_grades#attendance'
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root

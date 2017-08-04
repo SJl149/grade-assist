@@ -24,15 +24,20 @@ user.save!
   student.save!
 
   # Create DailyGrades
-  DailyGrade.create(
-    attendance: 2,
-    participation: 1,
-    homework: 2,
-    quiz: 85,
-    comment: "Good work today.",
-    exam: 90,
-    student_id: student.id
-  )
+  x = [0, 1, 2]
+  (0..10).each do |i|
+    daily_grade = DailyGrade.create(
+      attendance: x.sample,
+      participation: x.sample,
+      homework: x.sample,
+      quiz: 85,
+      comment: "Good work today.",
+      exam: 90,
+      student_id: student.id
+    )
+    daily_grade.created_at = i.days.ago
+    daily_grade.save
+  end
 end
 students_group1 = Student.first(15)
 students_group2 = Student.all - students_group1

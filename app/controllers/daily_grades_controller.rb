@@ -1,6 +1,7 @@
 class DailyGradesController < ApplicationController
   def index
-    @daily_grades = DailyGrade.all
+    @student = Student.find(params[:student_id])
+    @daily_grades = DailyGrade.where(student_id: @student)
   end
 
   def show
@@ -23,6 +24,14 @@ class DailyGradesController < ApplicationController
 
   end
 
+  def update
+    @student = Student.find(params[:student_id])
+    @daily_grade = @student.daily_grades.last
+    if @daily_grade.update(daily_grade_params)
+      redirect_to attendance_path, notice: "Grade updated."
+    end
+  end
+
   def attendance
     @course = Course.first
   end
@@ -31,6 +40,7 @@ class DailyGradesController < ApplicationController
   end
 
   def homework
+    @course = Course.first
   end
 
   def quizzes
@@ -38,7 +48,7 @@ class DailyGradesController < ApplicationController
 
   private
 
-  def grade_params
-
+  def daily_grade_params
+    params.require(:daily_grade).permit(:attendance)
   end
 end
