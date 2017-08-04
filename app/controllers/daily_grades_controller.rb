@@ -1,6 +1,5 @@
 class DailyGradesController < ApplicationController
   def index
-
     @daily_grades = DailyGrade.all
   end
 

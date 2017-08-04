@@ -20,7 +20,7 @@
           <h4>Quizzes: <%= @student.daily_grades.first.quiz %></h4>
           <br>
           <h4>Midterm/Final: <%= @student.daily_grades.first.exam %></h4>
-          <%= link_to "Check Record", daily_grades_path, class: "btn btn-primary" %>
+          <%= link_to "Check Record", student_daily_grades_path(@student), class: "btn btn-primary" %>
         </div>
       </div>
     </div>
