@@ -30,7 +30,7 @@ user.save!
     homework: 2,
     quiz: 85,
     comment: "Good work today.",
-    test: 90,
+    exam: 90,
     student_id: student.id
   )
 end

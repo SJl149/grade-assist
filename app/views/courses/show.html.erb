@@ -18,7 +18,7 @@
   <tbody>
     <% @course.students.each do |student| %>
       <tr>
-        <td><%= student.nickname %></td>
+        <td><%= link_to student.nickname, student %></td>
         <td><%= student.family_name %>, <%= student.given_name %></td>
         <td>L: 2, A: 1</td>
         <td>100%</td>

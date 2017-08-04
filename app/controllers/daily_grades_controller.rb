@@ -1,17 +1,10 @@
 class DailyGradesController < ApplicationController
   def index
 
+    @daily_grades = DailyGrade.all
   end
 
   def show
-
-  end
-
-  def edit
-
-  end
-
-  def destroy
 
   end
 
@@ -20,6 +13,14 @@ class DailyGradesController < ApplicationController
   end
 
   def create
+
+  end
+
+  def edit
+
+  end
+
+  def destroy
 
   end
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
   resources :courses
   resources :daily_grades
+  resources :students
 
   get 'attendance' => 'daily_grades#attendance'
 
