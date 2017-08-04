@@ -23,22 +23,17 @@ class DailyGradesController < ApplicationController
 
   end
 
-  def attendance
-    @course = Course.first
-  end
-
-  def class_work
-  end
-
-  def homework
-  end
-
-  def quizzes
+  def update
+    @student = Student.find(params[:student_id])
+    @daily_grade = @student.daily_grades.last
+    if @daily_grade.update(daily_grade_params)
+      redirect_to root_path, notice: 'Grade updated'
+    end
   end
 
   private
 
-  def grade_params
-
+  def daily_grade_params
+    params.require(:daily_grade).permit(:attendance)
   end
 end
