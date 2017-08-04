@@ -23,11 +23,15 @@ class DailyGradesController < ApplicationController
 
   end
 
+  def attendance
+    @course = Course.last
+  end
+
   def update
     @student = Student.find(params[:student_id])
     @daily_grade = @student.daily_grades.last
     if @daily_grade.update(daily_grade_params)
-      redirect_to root_path, notice: 'Grade updated'
+      redirect_to attendance_path, notice: 'Grade updated'
     end
   end
 
