@@ -1,15 +1,17 @@
 class DailyGradesController < ApplicationController
+  respond_to :html, :json
+
   def index
     @student = Student.find(params[:student_id])
     @daily_grades = DailyGrade.where(student_id: @student)
   end
 
   def show
-
+    @daily_grade = DailyGrade.find(params[:id])
   end
 
   def new
-
+    @daily_grade = DailyGrade.new
   end
 
   def create
@@ -17,7 +19,8 @@ class DailyGradesController < ApplicationController
   end
 
   def edit
-
+    @student = Student.find(params[:student_id])
+    @daily_grade = DailyGrade.find(params[:id])
   end
 
   def destroy
@@ -26,10 +29,23 @@ class DailyGradesController < ApplicationController
 
   def update
     @student = Student.find(params[:student_id])
-    @daily_grade = @student.daily_grades.last
+    @daily_grade = DailyGrade.find(params[:id])
     if @daily_grade.update(daily_grade_params)
-      redirect_to attendance_path, notice: "Grade updated."
+      flash[:notice] = "Grade was updated successfully."
+      redirect_to root_path
+    else
+      flash.now[:alert] = "Error updating grade. Please try again."
+      render :edit
     end
+    #respond_to do |format|
+    #  if @daily_grade.update(daily_grade_params)
+    #    format.html { redirect_to(root_path, :notice => 'Grade updated.') }
+    #    format.json { respond_with_bip(@daily_grade)}
+    #  else
+    #    format.html { render :action => "edit" }
+    #    format.json { respond_with_bip(@daily_grade) }
+    #  end
+    #end
   end
 
   def attendance
@@ -49,6 +65,6 @@ class DailyGradesController < ApplicationController
   private
 
   def daily_grade_params
-    params.require(:daily_grade).permit(:attendance)
+    params.require(:daily_grade).permit(:attendance, :participation, :homework, :quiz, :comment, :exam)
   end
 end

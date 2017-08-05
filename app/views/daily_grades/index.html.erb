@@ -16,15 +16,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @daily_grades.each do |grade| %>
+    <% @daily_grades.each do |daily_grade| %>
       <tr>
-        <td><%= grade.created_at.to_date.to_formatted_s(:long) %></td>
-        <td><%= grade.attendance %></td>
-        <td><%= grade.participation %></td>
-        <td><%= grade.homework %></td>
-        <td><%= grade.quiz %></td>
-        <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-        <td><%= grade.exam %></td>
+        <td><%= link_to daily_grade.created_at.to_date.to_formatted_s(:long), edit_student_daily_grade_path(:id => daily_grade.id) %></td>
+        <td><%= daily_grade.attendance %></td>
+        <td><%= daily_grade.participation %></td>
+        <td><%= daily_grade.homework %></td>
+        <td><%= daily_grade.quiz %></td>
+        <td><%= daily_grade.comment %></td>
+        <td><%= daily_grade.exam %></td>
       </tr>
     <% end %>
   </tbody>
