@@ -32,22 +32,22 @@ class DailyGradesController < ApplicationController
 
     @daily_grade = DailyGrade.find(params[:id])
     student = Student.find(@daily_grade.student_id)
-    if @daily_grade.update(daily_grade_params)
-      flash[:notice] = "Grade was updated successfully."
-      redirect_to root_path
-    else
-      flash.now[:alert] = "Error updating grade. Please try again."
-      render :edit
-    end
-    #respond_to do |format|
-    #  if @daily_grade.update(daily_grade_params)
-    #    format.html { redirect_to(root_path, :notice => 'Grade updated.') }
-    #    format.json { respond_with_bip(@daily_grade)}
-    #  else
-    #    format.html { render :action => "edit" }
-    #    format.json { respond_with_bip(@daily_grade) }
-    #  end
+    #if @daily_grade.update(daily_grade_params)
+    #  flash[:notice] = "Grade was updated successfully."
+    #  redirect_to root_path
+    #else
+    #  flash.now[:alert] = "Error updating grade. Please try again."
+    #  render :edit
     #end
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+        format.html { redirect_to(root_path, :notice => 'Grade updated.') }
+        format.json { respond_with_bip(@daily_grade)}
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@daily_grade) }
+      end
+    end
   end
 
   def attendance
