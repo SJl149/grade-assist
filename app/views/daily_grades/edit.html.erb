@@ -1,8 +1,8 @@
 <h1><%= @student.nickname %>'s Record for <%= @daily_grade.created_at.to_date.to_formatted_s(:long) %></h1>
-<%= simple_form_for :daily_grade, html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :attendance, collection: DailyGrade.attendances %>
-  <%= f.input :participation, collection: DailyGrade.participations %>
-  <%= f.input :homework, collection: DailyGrade.homeworks %>
+<%= simple_form_for @daily_grade, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :attendance, collection: DailyGrade.attendances, value_method: :first %>
+  <%= f.input :participation, collection: DailyGrade.participations, value_method: :first %>
+  <%= f.input :homework, collection: DailyGrade.homeworks, value_method: :first %>
   <%= f.input :quiz %>
   <%= f.input :comment %>
   <%= f.input :exam %>

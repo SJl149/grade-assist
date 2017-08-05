@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   get 'attendance' => 'daily_grades#attendance'
   get 'homework' => 'daily_grades#homework'
 
-  resources :students do
-    resources :daily_grades
-  end
+  resources :students 
+  resources :daily_grades
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root

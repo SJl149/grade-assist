@@ -18,7 +18,7 @@
   <tbody>
     <% @daily_grades.each do |daily_grade| %>
       <tr>
-        <td><%= link_to daily_grade.created_at.to_date.to_formatted_s(:long), edit_student_daily_grade_path(:id => daily_grade.id) %></td>
+        <td><%= link_to daily_grade.created_at.to_date.to_formatted_s(:long), edit_daily_grade_path(:id => daily_grade.id) %></td>
         <td><%= daily_grade.attendance %></td>
         <td><%= daily_grade.participation %></td>
         <td><%= daily_grade.homework %></td>

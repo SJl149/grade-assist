@@ -2,7 +2,7 @@ class DailyGradesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @student = Student.find(params[:student_id])
+    @student = Student.find(params[:student])
     @daily_grades = DailyGrade.where(student_id: @student)
   end
 
@@ -19,8 +19,9 @@ class DailyGradesController < ApplicationController
   end
 
   def edit
-    @student = Student.find(params[:student_id])
+
     @daily_grade = DailyGrade.find(params[:id])
+    @student = Student.find(@daily_grade.student_id)
   end
 
   def destroy
@@ -28,8 +29,9 @@ class DailyGradesController < ApplicationController
   end
 
   def update
-    @student = Student.find(params[:student_id])
+
     @daily_grade = DailyGrade.find(params[:id])
+    student = Student.find(@daily_grade.student_id)
     if @daily_grade.update(daily_grade_params)
       flash[:notice] = "Grade was updated successfully."
       redirect_to root_path
