@@ -4,6 +4,7 @@ class DailyGradesController < ApplicationController
   def index
     @student = Student.find(params[:student])
     @daily_grades = DailyGrade.where(student_id: @student)
+    @course = @student.courses.first
   end
 
   def show

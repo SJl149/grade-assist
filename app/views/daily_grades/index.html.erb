@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <h1 class="text-center"><%= best_in_place @student, :nickname %>'s Record</h1>
+    <h1 class="text-center"><%= @student.nickname %>'s Record</h1>
   </div>
 </div>
 <table class="table table-striped table-hover">
@@ -29,3 +29,13 @@
     <% end %>
   </tbody>
 </table>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="btn-group btn-group-justified">
+        <%= link_to "Student Dashboard", @student, class: "btn btn-primary" %>
+        <%= link_to "Class Overview", @course, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
