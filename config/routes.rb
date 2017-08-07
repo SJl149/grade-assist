@@ -3,10 +3,15 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   resources :courses
-  get 'attendance' => 'daily_grades#attendance'
-  get 'homework' => 'daily_grades#homework'
 
-  resources :students 
+  get 'attendance' => 'daily_grades#attendance'
+  patch 'attendance' => 'daily_grades#update_attendance'
+  get 'homework' => 'daily_grades#homework'
+  patch 'homework' => 'daily_grades#update_homework'
+  get 'participation' => 'daily_grades#participation'
+  patch 'participation' => 'daily_grades#update_participation'
+
+  resources :students
   resources :daily_grades
 
   authenticated :user do

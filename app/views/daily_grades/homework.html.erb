@@ -18,9 +18,9 @@
           <tr>
             <td><%= student.nickname %></td>
             <td><%= student.family_name %>, <%= student.given_name %></td>
-            <td><%= link_to 'Full', student_daily_grade_path(student, student.daily_grades.last, daily_grade: { homework: :full}), method: :patch, class: "btn btn-success" %></td>
-            <td><%= link_to 'Half', student_daily_grade_path(student, student.daily_grades.last, daily_grade: { homework: :half}), method: :patch, class: "btn btn-warning" %></td>
-            <td><%= link_to 'None', student_daily_grade_path(student, student.daily_grades.last, daily_grade: { homework: :zero}), method: :patch, class: "btn btn-danger" %></td>
+            <td><%= link_to 'Full', homework_path(student_id: student, daily_grade: { homework: :full}), method: :patch, class: "btn btn-success" %></td>
+            <td><%= link_to 'Half', homework_path(student_id: student, daily_grade: { homework: :half}), method: :patch, class: "btn btn-warning" %></td>
+            <td><%= link_to 'None', homework_path(student_id: student, daily_grade: { homework: :zero}), method: :patch, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
       </tbody>

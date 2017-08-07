@@ -1,13 +1,13 @@
 <div class="panel panel-success">
   <div class="panel-heading">
-    <h3 class="panel-title">Participation for <%= @course.name %></h3>
+    <h3 class="panel-title">Participation for <%= @course.name %> | <%= Date.today.to_formatted_s(:long_ordinal) %></h3>
   </div>
   <div class="panel-body">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>Students</th>
-          <th>Legal Name</th>
+          <th>Name</th>
           <th>Participation</th>
         </tr>
       </thead>
@@ -15,14 +15,10 @@
         <% @course.students.each do |student| %>
           <tr>
             <td><%= student.nickname %></td>
-            <td><%= student.name %></td>
-            <td>
-              <div class="btn-group btn-group-justified">
-                <%= link_to "Good", class: "btn btn-success" %>
-                <%= link_to "Average", class: "btn btn-warning" %>
-                <%= link_to "Poor", class: "btn btn-danger" %>
-              </div>
-            </td>
+            <td><%= student.family_name %>, <%= student.given_name %></td>
+            <td><%= link_to "Good", participation_path(student_id: student, daily_grade: { participation: :good}), method: :patch, class: "btn btn-success" %></td>
+            <td><%= link_to "Average", participation_path(student_id: student, daily_grade: { participation: :avg}), method: :patch, class: "btn btn-warning" %></td>
+            <td><%= link_to "Poor", participation_path(student_id: student, daily_grade: { participation: :poor}), method: :patch, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
       </tbody>
