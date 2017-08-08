@@ -23,6 +23,7 @@ group :production do
  gem 'devise'
  gem 'cocoon', '~> 1.2', '>= 1.2.9'
  gem 'simple_form'
+ gem 'best_in_place', '~> 3.1'
 
  group :development, :test do
    gem 'byebug'

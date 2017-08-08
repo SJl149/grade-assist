@@ -1,4 +1,8 @@
-<h1 class="text-center"><%= @course.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h1 class="text-center"><%= @course.name %></h1>
+  </div>
+</div>
 <table class="table table-striped table-hover">
   <thead>
     <tr class="info">
@@ -14,8 +18,8 @@
   <tbody>
     <% @course.students.each do |student| %>
       <tr>
-        <td><%= student.nickname %></td>
-        <td><%= student.name %></td>
+        <td><%= link_to student.nickname, student %></td>
+        <td><%= student.family_name %>, <%= student.given_name %></td>
         <td>L: 2, A: 1</td>
         <td>100%</td>
         <td>95%</td>
@@ -25,3 +29,13 @@
     <% end %>
   </tbody>
 </table>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="btn-group btn-group-justified">
+        <%= link_to "Edit Class", edit_course_path, class: "btn btn-default btn-primary" %>
+        <%= link_to "Delete Class", @course, method: :delete, data: {confirm: "Are you sure you want to delete this class?"}, class: "btn btn-default btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h1 class="text-center">Student Dashboard</h1>
+    <h3 class="text-center"><%= @student.nickname %> (<%= @student.family_name %>, <%= @student.given_name %>)</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="text-center">Attendance for <%= @course.name %> </h4>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+              <h4 class="text-danger">Lates</h4>
+              <% @lates.each do |late| %>
+                <p><%= late.created_at.strftime("%a %m/%d") %></p>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-danger">Absences</h4>
+              <% @absents.each do |absent| %>
+                <p><%= absent.created_at.strftime("%a %m/%d") %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Homework: <%= @student.daily_grades.first.homework %></h4>
+          <h4>Participation: <%= @student.daily_grades.first.participation %></h4>
+          <h4>Quizzes: <%= @student.daily_grades.first.quiz %></h4>
+          <h4>Midterm/Final: <%= @student.daily_grades.first.exam %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="btn-group btn-group-justified">
+        <%= link_to "Check Record", { :controller => "daily_grades", :action => "index", :student => @student.id }, class: "btn btn-primary" %>
+        <%= link_to "Back to the Course", @course, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
