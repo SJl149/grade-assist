@@ -44,57 +44,55 @@ class DailyGradesController < ApplicationController
   end
 
   def attendance
-    if params.has_key?(:course_id)
-      @course = Course.find(params[:course_id])
-    else
-      @student = Student.find(params[:student_id])
-      @course = @student.courses.first
-    end
+    @course = Course.find(params[:course_id])
   end
 
   def update_attendance
+    @course = Course.find(params[:course_id])
     student = Student.find(params[:student_id])
     @daily_grade = student.daily_grades.last
 
     if @daily_grade.update(daily_grade_params)
-      flash[:notice] = "Grade was updated successfully."
-      redirect_to attendance_path
+      flash[:notice] = "Attendance was updated successfully."
+      redirect_to attendance_path(course_id: @course.id)
     else
-      flash.now[:alert] = "Error updating grade. Please try again."
+      flash.now[:alert] = "Error updating attendance. Please try again."
       render :edit
     end
   end
 
   def participation
-    @course = Course.first
+    @course = Course.find(params[:course_id])
   end
 
   def update_participation
+    @course = Course.find(params[:course_id])
     student = Student.find(params[:student_id])
     @daily_grade = student.daily_grades.last
 
     if @daily_grade.update(daily_grade_params)
-      flash[:notice] = "Grade was updated successfully."
-      redirect_to participation_path
+      flash[:notice] = "Participation was updated successfully."
+      redirect_to participation_path(course_id: @course.id)
     else
-      flash.now[:alert] = "Error updating grade. Please try again."
+      flash.now[:alert] = "Error updating participation. Please try again."
       render :edit
     end
   end
 
   def homework
-    @course = Course.first
+    @course = Course.find(params[:course_id])
   end
 
   def update_homework
+    @course = Course.find(params[:course_id])
     student = Student.find(params[:student_id])
     @daily_grade = student.daily_grades.last
 
     if @daily_grade.update(daily_grade_params)
-      flash[:notice] = "Grade was updated successfully."
-      redirect_to homework_path
+      flash[:notice] = "Homework was updated successfully."
+      redirect_to homework_path(course_id: @course.id)
     else
-      flash.now[:alert] = "Error updating grade. Please try again."
+      flash.now[:alert] = "Error updating homework. Please try again."
       render :edit
     end
   end
