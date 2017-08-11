@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <h1 class="text-center"><%= best_in_place @student, :nickname %>'s Record</h1>
+    <h1 class="text-center"><%= @student.nickname %>'s Record</h1>
   </div>
 </div>
 <table class="table table-striped table-hover">
@@ -22,9 +22,9 @@
         <td><%= best_in_place daily_grade, :attendance, as: :select, collection: DailyGrade.attendances.keys.map { |w| [w,w] } %></td>
         <td><%= best_in_place daily_grade, :participation, as: :select, collection: DailyGrade.participations.keys.map { |w| [w,w] } %></td>
         <td><%= best_in_place daily_grade, :homework, as: :select, collection: DailyGrade.homeworks.keys.map { |w| [w,w] } %></td>
-        <td><%= best_in_place daily_grade, :quiz %></td>
+        <td><%= best_in_place daily_grade, :quiz, html_attrs: { size: '5'} %></td>
         <td><%= best_in_place daily_grade, :comment %></td>
-        <td><%= best_in_place daily_grade, :exam %></td>
+        <td><%= best_in_place daily_grade, :exam, html_attrs: { size: '5'} %></td>
       </tr>
     <% end %>
   </tbody>
