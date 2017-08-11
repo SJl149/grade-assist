@@ -1,23 +1,25 @@
 <div class="panel panel-success">
   <div class="panel-heading">
-    <h2 class="panel-title text-center">Attendance: <%= @course.name %> | <%= Date.today.to_formatted_s(:long_ordinal) %></h2>
+    <h2 class="panel-title text-center">Attendance: <%= @course.name %> | <%= @daily_grades_date.to_formatted_s(:long_ordinal) %></h2>
   </div>
   <div class="panel-body">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>Student</th>
-          <th>Name</th>
+          <th>Status</th>
+          <th>Comments</th>
           <th>Present</th>
           <th>Late</th>
           <th>Absent</th>
         </tr>
       </thead>
       <tbody>
-        <% @course.students.each do |student| %>
+        <% @students.each do |student| %>
           <tr>
             <td><%= student.nickname %></td>
-            <td><%= student.family_name %>, <%= student.given_name %></td>
+            <td><span class="<%= student.daily_grades.last.attendance == 'present' ? 'label label-success' : student.daily_grades.last.attendance == 'late' ? 'label label-warning' : 'label label-danger' %>"><%= student.daily_grades.last.attendance %></span></td>
+            <td><%= best_in_place student.daily_grades.last, :comment %></td>
             <td><%= link_to 'Present', attendance_path(student_id: student, course_id: @course.id, daily_grade: { attendance: :present}), method: :patch, class: "btn btn-success" %></td>
             <td><%= link_to 'Late', attendance_path(student_id: student, course_id: @course.id, daily_grade: { attendance: :late}), method: :patch, class: "btn btn-warning" %></td>
             <td><%= link_to 'Absent', attendance_path(student_id: student, course_id: @course.id, daily_grade: { attendance: :absent}), method: :patch, class: "btn btn-danger" %></td>
