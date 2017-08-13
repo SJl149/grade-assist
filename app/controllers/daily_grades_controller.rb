@@ -50,12 +50,17 @@ class DailyGradesController < ApplicationController
   def update_attendance
     att_part_hw_update_grades
 
-    if @daily_grade.update(daily_grade_params)
-      redirect_to attendance_path(course_id: @course.id)
-    else
-      flash.now[:alert] = "Error updating attendance. Please try again."
-      render :edit
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+
+        format.html { render partial: "daily_grades/attendance" }
+        format.js
+      else
+        flash.now[:alert] = "Error updating attendance. Please try again."
+        format.html { render :edit }
+      end
     end
+
   end
 
   def participation
@@ -96,8 +101,8 @@ class DailyGradesController < ApplicationController
 
   def att_part_hw_update_grades
     @course = Course.find(params[:course_id])
-    student = Student.find(params[:student_id])
-    @daily_grade = student.daily_grades.last
+    @student = Student.find(params[:student_id])
+    @daily_grade = @student.daily_grades.last
   end
 
   private

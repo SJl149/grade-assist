@@ -18,7 +18,7 @@
         <% @students.each do |student| %>
           <tr>
             <td><%= student.nickname %></td>
-            <td><span class="<%= student.daily_grades.last.homework == 'full' ? 'label label-success' : student.daily_grades.last.homework == 'half' ? 'label label-warning' : 'label label-danger' %>"><%= student.daily_grades.last.homework %></span></td>
+            <td><span class="label label-<%= homework_label(student.daily_grades.last.homework) %>"><%= student.daily_grades.last.homework %></span></td>
             <td><%= best_in_place student.daily_grades.last, :comment %></td>
             <td><%= link_to 'Full', homework_path(student_id: student, course_id: @course.id, daily_grade: { homework: :full}), method: :patch, class: "btn btn-success" %></td>
             <td><%= link_to 'Half', homework_path(student_id: student, course_id: @course.id, daily_grade: { homework: :half}), method: :patch, class: "btn btn-warning" %></td>
