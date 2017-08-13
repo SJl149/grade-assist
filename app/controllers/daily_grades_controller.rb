@@ -52,15 +52,13 @@ class DailyGradesController < ApplicationController
 
     respond_to do |format|
       if @daily_grade.update(daily_grade_params)
-
-        format.html { render partial: "daily_grades/attendance" }
+        format.html { render partial: "attendance" }
         format.js
       else
         flash.now[:alert] = "Error updating attendance. Please try again."
         format.html { render :edit }
       end
     end
-
   end
 
   def participation
@@ -70,11 +68,14 @@ class DailyGradesController < ApplicationController
   def update_participation
     att_part_hw_update_grades
 
-    if @daily_grade.update(daily_grade_params)
-      redirect_to participation_path(course_id: @course.id)
-    else
-      flash.now[:alert] = "Error updating participation. Please try again."
-      render :edit
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+        format.html { render partial: "participation" }
+        format.js
+      else
+        flash.now[:alert] = "Error updating participation. Please try again."
+        format.html { render :edit }
+      end
     end
   end
 
@@ -85,11 +86,14 @@ class DailyGradesController < ApplicationController
   def update_homework
     att_part_hw_update_grades
 
-    if @daily_grade.update(daily_grade_params)
-      redirect_to homework_path(course_id: @course.id)
-    else
-      flash.now[:alert] = "Error updating homework. Please try again."
-      render :edit
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+        format.html { render partial: "homework" }
+        format.js
+      else
+        flash.now[:alert] = "Error updating homework. Please try again."
+        format.html { render :edit }
+      end
     end
   end
 
