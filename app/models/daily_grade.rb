@@ -1,5 +1,5 @@
 class DailyGrade < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :student, :counter_cache => true
 
   enum attendance: [:present, :late, :absent]
   enum participation: [:good, :avg, :poor]
