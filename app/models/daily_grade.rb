@@ -4,4 +4,5 @@ class DailyGrade < ActiveRecord::Base
   enum attendance: [:present, :late, :absent]
   enum participation: [:good, :avg, :poor]
   enum homework: [:full, :half, :zero]
+
 end

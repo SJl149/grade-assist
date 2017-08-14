@@ -17,3 +17,13 @@
 //= require best_in_place
 //= require cocoon
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('.datepicker').datepicker({
+    autoclose: true,
+    daysOfWeekDisabled: [0,6]
+  }).on('changeDate', function(event) {
+    console.log(event);
+    fetch('homework?date=' + event.date);
+  });
+});
