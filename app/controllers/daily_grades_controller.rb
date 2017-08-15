@@ -100,13 +100,14 @@ class DailyGradesController < ApplicationController
   def att_part_hw_grades
     @course = Course.find(params[:course_id])
     @students = @course.students
-    @daily_grades_date = params[:date] || Date.today
+    @daily_grades_date = params[:date]&.to_date || Date.today
   end
 
   def att_part_hw_update_grades
     @course = Course.find(params[:course_id])
     @student = Student.find(params[:student_id])
-    @daily_grade = @student.daily_grades.find_by(created_at: params[:date] || Date.today)
+    # binding.pry
+    @daily_grade = @student.daily_grades.find_by('created_at >= ?', params[:date])
   end
 
   private

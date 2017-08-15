@@ -24,6 +24,7 @@ group :production do
  gem 'cocoon', '~> 1.2', '>= 1.2.9'
  gem 'simple_form'
  gem 'best_in_place', '~> 3.1'
+ gem 'bootstrap-datepicker-rails'
 
  group :development, :test do
    gem 'byebug'
