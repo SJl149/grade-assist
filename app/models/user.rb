@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :courses
-  # has_many :students, through: :esl_classes, source: :esl_classes
 
   enum role: [:teacher, :office, :admin]
 end

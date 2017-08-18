@@ -22,9 +22,9 @@
 $(document).on('turbolinks:load', function() {
     $('.datepicker').datepicker({
       autoclose: true,
-      daysOfWeekDisabled: [0,5,6]
-    }).on('changeDate', function(event) {
-      console.log(event);
-      fetch('homework?date=' + event.timestamp);
+      daysOfWeekDisabled: [0,5,6],
+      format: 'yyyy/mm/dd'
+    }).on('changeDate', function() {
+      $('#homework-time-select').submit();
     });
 });
