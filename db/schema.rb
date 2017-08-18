@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804142706) do
+ActiveRecord::Schema.define(version: 20170818163716) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20170804142706) do
 
   add_index "daily_grades", ["student_id"], name: "index_daily_grades_on_student_id"
 
+  create_table "days_offs", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "semester_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "days_offs", ["semester_id"], name: "index_days_offs_on_semester_id"
+
   create_table "enrollments", force: :cascade do |t|
     t.integer  "student_id"
     t.datetime "created_at", null: false
@@ -46,12 +55,21 @@ ActiveRecord::Schema.define(version: 20170804142706) do
 
   add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id"
 
+  create_table "semesters", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string   "nickname"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "family_name"
     t.string   "given_name"
+    t.integer  "daily_grades_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|

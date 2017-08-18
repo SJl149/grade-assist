@@ -1,0 +1,15 @@
+<h1>Create a Semester Schedule</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <br>
+    <br>
+    <%= simple_form_for @semester, html: { class: 'form-horizontal' } do |f| %>
+      <%= f.input :name %>
+      <%= f.label :start_date %>
+      <%= f.text_field :start_date, data:{ provide:'datepicker' }, class: 'form-control datepicker' %>
+      <%= f.label :end_date %>
+      <%= f.text_field :end_date, data:{ provide:'datepicker' }, class: 'form-control datepicker' %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   resources :courses
+  resources :semesters
 
   get 'attendance' => 'daily_grades#attendance'
   patch 'attendance' => 'daily_grades#update_attendance'
