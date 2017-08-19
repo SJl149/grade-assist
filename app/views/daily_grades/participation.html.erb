@@ -16,11 +16,11 @@
         <% @students.each do |student| %>
           <tr>
             <td><%= student.nickname %></td>
-            <td><span class="<%= student.daily_grades.last.participation == 'good' ? 'label label-success' : student.daily_grades.last.participation == 'average' ? 'label label-warning' : 'label label-danger' %>"><%= student.daily_grades.last.participation %></span></td>
+            <td id="student_<%= student.id %>"><span class="label label-<%= participation_label(student.daily_grades.last.participation) %>"><%= student.daily_grades.last.participation %></span></td>
             <td><%= best_in_place student.daily_grades.last, :comment %></td>
-            <td><%= link_to "Good", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :good}), method: :patch, class: "btn btn-success" %></td>
-            <td><%= link_to "Average", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :avg}), method: :patch, class: "btn btn-warning" %></td>
-            <td><%= link_to "Poor", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :poor}), method: :patch, class: "btn btn-danger" %></td>
+            <td><%= link_to "Good", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :good}), remote: true, method: :patch, class: "btn btn-success" %></td>
+            <td><%= link_to "Average", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :avg}), remote: true, method: :patch, class: "btn btn-warning" %></td>
+            <td><%= link_to "Poor", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :poor}), remote: true, method: :patch, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
       </tbody>

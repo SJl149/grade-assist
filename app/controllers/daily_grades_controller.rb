@@ -50,11 +50,14 @@ class DailyGradesController < ApplicationController
   def update_attendance
     att_part_hw_update_grades
 
-    if @daily_grade.update(daily_grade_params)
-      redirect_to attendance_path(course_id: @course.id)
-    else
-      flash.now[:alert] = "Error updating attendance. Please try again."
-      render :edit
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+        format.html { render partial: "attendance" }
+        format.js
+      else
+        flash.now[:alert] = "Error updating attendance. Please try again."
+        format.html { render :edit }
+      end
     end
   end
 
@@ -65,11 +68,14 @@ class DailyGradesController < ApplicationController
   def update_participation
     att_part_hw_update_grades
 
-    if @daily_grade.update(daily_grade_params)
-      redirect_to participation_path(course_id: @course.id)
-    else
-      flash.now[:alert] = "Error updating participation. Please try again."
-      render :edit
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+        format.html { render partial: "participation" }
+        format.js
+      else
+        flash.now[:alert] = "Error updating participation. Please try again."
+        format.html { render :edit }
+      end
     end
   end
 
@@ -80,24 +86,27 @@ class DailyGradesController < ApplicationController
   def update_homework
     att_part_hw_update_grades
 
-    if @daily_grade.update(daily_grade_params)
-      redirect_to homework_path(course_id: @course.id)
-    else
-      flash.now[:alert] = "Error updating homework. Please try again."
-      render :edit
+    respond_to do |format|
+      if @daily_grade.update(daily_grade_params)
+        format.html { render partial: "homework" }
+        format.js
+      else
+        flash.now[:alert] = "Error updating homework. Please try again."
+        format.html { render :edit }
+      end
     end
   end
 
   def att_part_hw_grades
     @course = Course.find(params[:course_id])
     @students = @course.students
-    @daily_grades_date = @students.first.daily_grades.last.created_at
+    @daily_grades_date = @students.first.daily_grades.first.created_at
   end
 
   def att_part_hw_update_grades
     @course = Course.find(params[:course_id])
-    student = Student.find(params[:student_id])
-    @daily_grade = student.daily_grades.last
+    @student = Student.find(params[:student_id])
+    @daily_grade = @student.daily_grades.first
   end
 
   private

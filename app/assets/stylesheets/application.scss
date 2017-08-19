@@ -12,7 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker3
  */
+ 
  @import "bootstrap-sprockets";
 
  @import "bootswatch/cerulean/variables";
@@ -25,3 +27,7 @@
  }
 
  @import "bootswatch/cerulean/bootswatch";
+
+.small-text-field {
+  width: 25%;
+}
