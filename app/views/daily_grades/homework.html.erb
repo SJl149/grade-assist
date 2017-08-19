@@ -3,11 +3,6 @@
     <h3 class="panel-title text-center">Homework: <%= @course.name %> | <%= @daily_grades_date.to_formatted_s(:long_ordinal) %></h3>
   </div>
   <div class="panel-body">
-    <%= form_tag homework_path, id: 'homework-time-select', method: :get do %>
-      <%= hidden_field_tag :course_id, @course.id %>
-      <%= label_tag :date, 'Select a date' %>
-      <%= text_field_tag :date, @daily_grades_date, class: 'form-control small-text-field datepicker' %>
-    <% end %>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -21,14 +16,14 @@
       </thead>
       <tbody>
         <% @students.each do |student| %>
-          <% @student_daily_grade = student.daily_grades.for_date(@daily_grades_date) %>
+          <% @student_daily_grade = student.daily_grades.first %>
           <tr>
             <td><%= student.nickname %></td>
-            <td id="student_<%= student.id %>"><span class="label label-<%= homework_label(@student_daily_grade.homework) %>"><%= @student_daily_grade.homework %> + <%= @daily_grades_date %></span></td>
+            <td id="student_<%= student.id %>"><span class="label label-<%= homework_label(@student_daily_grade.homework) %>"><%= @student_daily_grade.homework %></span></td>
             <td><%= best_in_place @student_daily_grade, :comment %></td>
-            <td><%= link_to 'Full', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :full}), remote: true, method: :patch, class: "btn btn-success" %></td>
-            <td><%= link_to 'Half', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :half}), remote: true, method: :patch, class: "btn btn-warning" %></td>
-            <td><%= link_to 'Zero', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :zero}), remote: true, method: :patch, class: "btn btn-danger" %></td>
+            <td><%= link_to 'Full', homework_path(student_id: student, course_id: @course.id, daily_grade: { homework: :full}), remote: true, method: :patch, class: "btn btn-success" %></td>
+            <td><%= link_to 'Half', homework_path(student_id: student, course_id: @course.id, daily_grade: { homework: :half}), remote: true, method: :patch, class: "btn btn-warning" %></td>
+            <td><%= link_to 'Zero', homework_path(student_id: student, course_id: @course.id, daily_grade: { homework: :zero}), remote: true, method: :patch, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
       </tbody>
