@@ -17,19 +17,9 @@
 //= require bootstrap-datepicker
 //= require best_in_place
 //= require cocoon
-//= require bootstrap-datepicker
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-<<<<<<< HEAD
-  $('.datepicker').datepicker({
-    autoclose: true,
-    daysOfWeekDisabled: [0,6],
-    format: 'yyyy/mm/dd'
-  }).on('changeDate', function() {
-    $('#homework-time-select').submit();
-  });
-=======
     $('.datepicker').datepicker({
       autoclose: true,
       daysOfWeekDisabled: [0,5,6],
@@ -37,5 +27,4 @@ $(document).on('turbolinks:load', function() {
     }).on('changeDate', function() {
       $('#homework-time-select').submit();
     });
->>>>>>> temp-branch
 });
