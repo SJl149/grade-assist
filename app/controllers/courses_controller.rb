@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.all
+    @past_courses = current_user.courses.where(:current => false)
   end
 
   def new

@@ -6,17 +6,17 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row">
-      <% @courses.each do |course| %>
+      <% @current_courses.each do |current_course| %>
         <div class="col-md-6">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title text-center"><%= course.name %></h3>
+              <h3 class="panel-title text-center"><%= current_course.name %></h3>
             </div>
             <div class="panel-body">
-              <h3><%= link_to "Attendance", attendance_path(course_id: course) %></h3>
-              <h3><%= link_to "Participation", participation_path(course_id: course) %></h3>
-              <h3><%= link_to "Homework", homework_path(course_id: course) %></h3>
-              <h3><%= link_to "Class Overview", course %></h3>
+              <h3><%= link_to "Attendance", attendance_path(course_id: current_course) %></h3>
+              <h3><%= link_to "Participation", participation_path(course_id: current_course) %></h3>
+              <h3><%= link_to "Homework", homework_path(course_id: current_course) %></h3>
+              <h3><%= link_to "Class Overview", current_course %></h3>
             </div>
           </div>
         </div>
@@ -26,9 +26,9 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
-    <h3>Past Classes <span class="badge">6</span></h3>
+    <h3><%= link_to "Past Classes", courses_path %> <span class="badge"><%= @past_courses.count %></span></h3>
     <h3>Calendar</h3>
-    <h3>Student Records <span class="badge">37</span></h3>
+    <h3><%= link_to "Student Records", students_path %> <span class="badge"><%= @students.count %></span></h3>
     <h3>Final Grade Reports</h3>
     <p><%= link_to "Create Class", new_course_path, class: "btn btn-primary btn-lg" %></p>
     <p><%= link_to "Create Schedule", new_semester_path, class: "btn btn-primary btn-lg" %></p>
