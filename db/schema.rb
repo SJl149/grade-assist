@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819153712) do
+ActiveRecord::Schema.define(version: 20170820003825) do
 
   create_table "course_semesters", force: :cascade do |t|
     t.integer  "course_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170819153712) do
     t.integer  "student_id"
     t.integer  "participation"
     t.integer  "exam"
+    t.datetime "classdate"
   end
 
   add_index "daily_grades", ["student_id"], name: "index_daily_grades_on_student_id"

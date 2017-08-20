@@ -7,6 +7,7 @@ class SemestersController < ApplicationController
 
   def new
     @semester = Semester.new
+    @semester.holidays.build
   end
 
   def create
@@ -24,6 +25,7 @@ class SemestersController < ApplicationController
   private
 
   def semester_params
-    params.require(:semester).permit(:name, :start_date, :end_date)
+    params.require(:semester).permit(:name, :start_date, :end_date,
+      holidays_attributes: [:id, :_destroy, :period])
   end
 end

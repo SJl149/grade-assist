@@ -3,4 +3,6 @@ class Semester < ActiveRecord::Base
   has_many :courses, through: :course_semesters
 
   has_many :holidays
+
+  accepts_nested_attributes_for :holidays, allow_destroy: true
 end
