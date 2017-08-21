@@ -25,6 +25,6 @@ $(document).on('turbolinks:load', function() {
       daysOfWeekDisabled: [0,5,6],
       format: 'yyyy/mm/dd'
     }).on('changeDate', function() {
-      $('#homework-time-select').submit();
+      $('.grade-time-select').submit();
     });
 });
