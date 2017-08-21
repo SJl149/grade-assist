@@ -7,7 +7,7 @@ class SemestersController < ApplicationController
 
   def new
     @semester = Semester.new
-    @semester.holidays.build
+    5.times { @semester.holidays.build }
   end
 
   def create

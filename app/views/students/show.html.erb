@@ -11,13 +11,13 @@
             <div class="col-md-4 col-md-offset-2">
               <h4 class="text-danger">Absences</h4>
               <% @absents.each do |absent| %>
-                <p><%= absent.created_at.strftime("%m/%d %a") %></p>
+                <p><%= absent.classdate.strftime("%m/%d %a") %></p>
               <% end %>
             </div>
             <div class="col-md-4">
               <h4 class="text-warning">Lates</h4>
               <% @lates.each do |late| %>
-                <p><%= late.created_at.strftime("%m/%d %a") %></p>
+                <p><%= late.classdate.strftime("%m/%d %a") %></p>
               <% end %>
             </div>
           </div>

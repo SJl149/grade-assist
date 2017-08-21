@@ -3,16 +3,17 @@
   <div class="panel-body">
     <br>
     <br>
-    <%= simple_form_for @semester, html: { class: 'form-horizontal' } do |f| %>
+    <%= simple_form_for @semester do |f| %>
       <%= f.input :name %>
-      <%= f.label :start_date %>
-      <%= f.text_field :start_date, data:{ provide:'datepicker' }, class: 'form-control datepicker' %>
-      <%= f.label :end_date %>
-      <%= f.text_field :end_date, data:{ provide:'datepicker' }, class: 'form-control datepicker' %>
-      <%= f.simple_fields_for :holidays do |ff| %>
-        <%= ff.label :period, "Holiday" %>
-        <%= ff.text_field :period, data:{ provide:'datepicker' }, class: 'form-control datepicker' %>
-      <% end %>
+      <%= f.label :start_date %><br>
+      <%= f.text_field :start_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+      <%= f.label :end_date %><br>
+      <%= f.text_field :end_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+      <div id="holidays">
+        <%= f.simple_fields_for :holidays do |holiday| %>
+          <%= render 'holiday_fields', f: holiday %>
+        <% end %>
+      </div>
       <%= f.button :submit %>
     <% end %>
   </div>
