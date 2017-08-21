@@ -107,12 +107,12 @@ class DailyGradesController < ApplicationController
     @course = Course.find(params[:course_id])
     @student = Student.find(params[:student_id])
     date = params[:date].to_date
-    @daily_grade = @student.daily_grades.find_by(created_at: date.beginning_of_day..date.end_of_day)
+    @daily_grade = @student.daily_grades.find_by(classdate: date.beginning_of_day..date.end_of_day)
   end
 
   private
 
   def daily_grade_params
-    params.require(:daily_grade).permit(:attendance, :participation, :homework, :quiz, :comment, :exam)
+    params.require(:daily_grade).permit(:attendance, :participation, :homework, :quiz, :comment, :exam, :classdate)
   end
 end
