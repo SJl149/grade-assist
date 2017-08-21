@@ -35,7 +35,7 @@ user.save!
       comment: "Good work today.",
       exam: 90,
       student_id: student.id,
-      classdate: i.days.ago
+      classdate: i.days.ago.beginning_of_day
     )
   end
 end
