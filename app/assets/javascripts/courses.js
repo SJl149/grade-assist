@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
 
   $('#students').on('cocoon:after-insert',
    function() {
-     $(".enollment-fields a.add_fields").
+     $(".enrollment-fields a.add_fields").
        data("association-insertion-position", 'before').
        data("association-insertion-node", 'this');
      $('.enrollment-fields').on('cocoon:after-insert',
@@ -14,4 +14,5 @@ $(document).on('turbolinks:load', function() {
           $(this).children("a.add_fields").hide();
         });
    });
+
 })

@@ -2,6 +2,7 @@ User.destroy_all
 Student.destroy_all
 Course.destroy_all
 Enrollment.destroy_all
+DailyGrade.destroy_all
 
 # Create User
 user = User.new(
@@ -26,17 +27,16 @@ user.save!
   # Create DailyGrades
   x = [0, 1, 2]
   (0..10).each do |i|
-    daily_grade = DailyGrade.create(
+    DailyGrade.create(
       attendance: x.sample,
       participation: x.sample,
       homework: x.sample,
       quiz: 85,
       comment: "Good work today.",
       exam: 90,
-      student_id: student.id
+      student_id: student.id,
+      classdate: i.days.ago.beginning_of_day
     )
-    daily_grade.created_at = i.days.ago
-    daily_grade.save
   end
 end
 students_group1 = Student.first(15)

@@ -1,0 +1,20 @@
+<h1>Create a Semester Schedule</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <br>
+    <br>
+    <%= simple_form_for @semester do |f| %>
+      <%= f.input :name %>
+      <%= f.label :start_date %><br>
+      <%= f.text_field :start_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+      <%= f.label :end_date %><br>
+      <%= f.text_field :end_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+      <div id="holidays">
+        <%= f.simple_fields_for :holidays do |holiday| %>
+          <%= render 'holiday_fields', f: holiday %>
+        <% end %>
+      </div>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>

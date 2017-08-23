@@ -18,7 +18,7 @@
   <tbody>
     <% @daily_grades.each do |daily_grade| %>
       <tr>
-        <td class="text-info"><strong><%= daily_grade.created_at.to_date.to_formatted_s(:long) %></strong></td>
+        <td class="text-info"><strong><%= daily_grade.classdate.to_date.to_formatted_s(:long) %></strong></td>
         <td><%= best_in_place daily_grade, :attendance, as: :select, collection: DailyGrade.attendances.keys.map { |w| [w,w] } %></td>
         <td><%= best_in_place daily_grade, :participation, as: :select, collection: DailyGrade.participations.keys.map { |w| [w,w] } %></td>
         <td><%= best_in_place daily_grade, :homework, as: :select, collection: DailyGrade.homeworks.keys.map { |w| [w,w] } %></td>

@@ -1,6 +1,11 @@
 <div class="panel panel-success">
   <div class="panel-heading">
     <h3 class="panel-title text-center">Participation: <%= @course.name %> | <%= @daily_grades_date.to_formatted_s(:long_ordinal) %></h3>
+    <%= form_tag participation_path, class: 'grade-time-select', method: :get do %>
+      <%= hidden_field_tag :course_id, @course.id %>
+      <%= label_tag :date, 'Select a date' %>
+      <%= text_field_tag :date, @daily_grades_date, class: 'form-control small-text-field datepicker' %>
+    <% end %>
   </div>
   <div class="panel-body">
     <table class="table table-striped table-hover">
@@ -14,13 +19,14 @@
       </thead>
       <tbody>
         <% @students.each do |student| %>
+          <% @student_daily_grade = student.daily_grades.for_date(@daily_grades_date) %>
           <tr>
             <td><%= student.nickname %></td>
-            <td id="student_<%= student.id %>"><span class="label label-<%= participation_label(student.daily_grades.last.participation) %>"><%= student.daily_grades.last.participation %></span></td>
-            <td><%= best_in_place student.daily_grades.last, :comment %></td>
-            <td><%= link_to "Good", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :good}), remote: true, method: :patch, class: "btn btn-success" %></td>
-            <td><%= link_to "Average", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :avg}), remote: true, method: :patch, class: "btn btn-warning" %></td>
-            <td><%= link_to "Poor", participation_path(student_id: student, course_id: @course.id, daily_grade: { participation: :poor}), remote: true, method: :patch, class: "btn btn-danger" %></td>
+            <td id="student_<%= student.id %>"><span class="label label-<%= participation_label(@student_daily_grade.participation) %>"><%= @student_daily_grade.participation %></span></td>
+            <td><%= best_in_place @student_daily_grade, :comment %></td>
+            <td><%= link_to "Good", participation_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { participation: :good}), remote: true, method: :patch, class: "btn btn-success" %></td>
+            <td><%= link_to "Average", participation_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { participation: :avg}), remote: true, method: :patch, class: "btn btn-warning" %></td>
+            <td><%= link_to "Poor", participation_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { participation: :poor}), remote: true, method: :patch, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
       </tbody>
