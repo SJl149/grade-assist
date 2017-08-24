@@ -1,21 +1,30 @@
-<th>Students</th>
-<th>Official Name</th>
-<th>Attendance</th>
-<th>Participation</th>
-<th>Homework</th>
-<th>Quizzes</th>
-<th>Comments</th>
-
-<h2>New Course</h2>
+<h2>New Class</h2>
 <hr>
-<%= simple_form_for @course, html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <p><strong>Students:</strong></p>
-  <div id="students">
-    <%= f.simple_fields_for :enrollments do |enrollment| %>
-      <%= render 'enrollment_fields', f: enrollment %>
-      <%= link_to_add_association 'Add student', f, :enrollments, class: 'btn btn-success' %>
-    <% end %>
+<%= simple_form_for @course, html: { class: 'form-vertical' } do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.input :name %>
+        </div>
+        <div class="col-md-6" id="semester">
+          <%= f.simple_fields_for :course_semesters do |course_semester| %>
+            <%= course_semester.association :semester, collection: Semester.order(:name), prompt: 'Choose a semester' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Students</strong></p>
+          <div id="students">
+            <%= f.simple_fields_for :enrollments do |enrollment| %>
+              <%= render 'enrollment_fields', f: enrollment %>
+              <%= link_to_add_association 'Add student', f, :enrollments, class: 'btn btn-success' %>
+            <% end %>
+          </div>
+          <%= f.button :submit %>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= f.button :submit %>
 <% end %>

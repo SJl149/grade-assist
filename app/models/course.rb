@@ -11,6 +11,6 @@ class Course < ActiveRecord::Base
 
   accepts_nested_attributes_for :enrollments, allow_destroy: true
   accepts_nested_attributes_for :students, allow_destroy: true
-
+  accepts_nested_attributes_for :course_semesters, allow_destroy: true
 
 end

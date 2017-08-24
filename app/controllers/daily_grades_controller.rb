@@ -100,7 +100,7 @@ class DailyGradesController < ApplicationController
   def att_part_hw_grades
     @course = Course.find(params[:course_id])
     @students = @course.students
-    @daily_grades_date = params[:date]&.to_date || Date.today
+    @daily_grades_date = params[:date]&.to_date || @students.first.daily_grades.first.classdate.to_date
   end
 
   def att_part_hw_update_grades
