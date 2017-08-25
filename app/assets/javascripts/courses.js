@@ -14,5 +14,4 @@ $(document).on('turbolinks:load', function() {
           $(this).children("a.add_fields").hide();
         });
    });
-
 })

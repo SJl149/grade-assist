@@ -25,6 +25,7 @@ group :production do
  gem 'simple_form'
  gem 'best_in_place', '~> 3.1'
  gem 'bootstrap-datepicker-rails'
+ gem 'simple_calendar', '~> 2.0', '>= 2.0.6'
 
  group :development, :test do
    gem 'byebug'

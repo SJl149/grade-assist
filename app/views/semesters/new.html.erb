@@ -14,7 +14,7 @@
           </div>
           <div class="col-md-6">
             <div id="holidays">
-              <%= f.simple_fields_for :holidays do |holiday| %>
+              <%= f.simple_fields_for :holidays, class: "holiday-time-select" do |holiday| %>
                 <%= render 'holiday_fields', f: holiday %>
                 <%= link_to_add_association 'add holiday', f, :holidays, class: 'btn btn-success' %>
               <% end %>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <%= f.button :submit, class: 'btn btn-primary' %>
+        <%= f.button :submit %>
       </div>
     <% end %>
   </div>

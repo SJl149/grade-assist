@@ -1,4 +1,11 @@
 $(document).on('turbolinks:load', function() {
+  $('.datepicker').datepicker({
+     autoclose: true,
+     daysOfWeekDisabled: [0,5],
+     orientation: "auto bottom",
+     format: 'yyyy/mm/dd'
+   });
+
   $("#holidays a.add_fields").
   data("association-insertion-position", 'before').
   data("association-insertion-node", 'this');
@@ -14,4 +21,5 @@ $(document).on('turbolinks:load', function() {
           $(this).children("a.add_fields").hide();
         });
    });
+
 })
