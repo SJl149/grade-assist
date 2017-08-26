@@ -1,6 +1,7 @@
 class SemestersController < ApplicationController
   def index
     @semesters = Semester.all
+    @holidays = Holiday.all
   end
 
   def show
@@ -9,7 +10,7 @@ class SemestersController < ApplicationController
 
   def new
     @semester = Semester.new
-    @semester.holidays.build
+    4.times { @semester.holidays.build }
   end
 
   def create

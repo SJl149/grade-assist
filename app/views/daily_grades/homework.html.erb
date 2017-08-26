@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= content_tag :div, id: "start_end_dates", data: { start_date: @course.semesters.first.start_date.to_date } do %>
+        <%= content_tag :div, id: "start_end_dates", data: { start_date: @course.semesters.first.start_date.to_date, end_date: @course.semesters.first.end_date.to_date } do %>
         <% end %>
         <% @students.each do |student| %>
           <% @student_daily_grade = student.daily_grades.for_date(@daily_grades_date) %>
