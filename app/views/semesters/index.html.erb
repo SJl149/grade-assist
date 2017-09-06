@@ -1,11 +1,16 @@
 <h1 class="text-center">Semester#index</h1>
 
-<%= month_calendar events: @holidays do |date, holidays| %>
+<%= month_calendar events: @semesters do |date, semesters| %>
   <%= date.strftime("%-m/%-d") %>
 
-  <% holidays.each do |holiday| %>
+  <% semesters.each do |semester| %>
     <div>
-      <p>Holiday</p>
+      <p><%= semester.name %></p>
     </div>
+    <% semester.holidays.each do |holiday| %>
+      <div>
+        <p>Holiday</p>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

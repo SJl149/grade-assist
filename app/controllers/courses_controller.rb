@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
+    @students = @course.students.order(:family_name)
   end
 
   def index

@@ -17,15 +17,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @course.students.each do |student| %>
+    <% @students.each do |student| %>
       <tr>
         <td><%= link_to student.nickname, student %></td>
         <td><%= student.family_name %>, <%= student.given_name %></td>
         <td>A: <%= student.daily_grades.where(attendance: 2).count %> | L: <%= student.daily_grades.where(attendance: 1).count %></td>
         <td><%= avg_participation(student.daily_grades) %>%</td>
         <td><%= avg_homework(student.daily_grades) %>%</td>
-        <td><%= student.daily_grades.average(:quiz).to_i %>%</td>
-        <td><%= student.daily_grades.average(:exam).to_i %>%</td>
+        <td><%= student.daily_grades.for_semester(@course.semesters.first).average(:quiz).to_i %>%</td>
+        <td><%= student.daily_grades.for_semester(@course.semesters.first).average(:exam).to_i %>%</td>
         <td><% if student.daily_grades.where.not(comment: [nil, ""]).any? %><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><% end %></td>
       </tr>
     <% end %>
