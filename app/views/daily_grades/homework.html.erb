@@ -31,7 +31,7 @@
             <td><%= best_in_place @student_daily_grade, :comment %></td>
             <td><%= link_to 'Full', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :full}), remote: true, method: :patch, class: "btn btn-success" %></td>
             <td><%= link_to 'Half', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :half}), remote: true, method: :patch, class: "btn btn-warning" %></td>
-            <td><%= link_to 'Zero', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :zero}), remote: true, method: :patch, class: "btn btn-danger" %></td>
+            <td><%= link_to 'Zero', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: :zero}), remote: true, method: :patch, class: "btn btn-danger" %></td>             
           </tr>
         <% end %>
       </tbody>
