@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
+    @semester = @course.semesters.first
+    @students = @course.students.order(:family_name)
   end
 
   def index
@@ -10,6 +12,7 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @course.enrollments.build
+    @course.course_semesters.build
   end
 
   def create
@@ -59,6 +62,9 @@ class CoursesController < ApplicationController
       :name,
       enrollments_attributes: [:id, :_destroy, :student_id, :course_id,
         student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname]
+      ],
+      course_semesters_attributes: [:id, :_detroy, :course_id, :semester_id,
+        semester_attributes: [:id, :_destroy, :name]
       ])
   end
 end

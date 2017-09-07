@@ -24,10 +24,10 @@
         </div>
         <div class="col-md-6">
           <h3 class="text-primary">Grade Averages</h3>
-          <h4>Homework: <%= avg_homework(@student.daily_grades) %>%</h4>
-          <h4>Participation: <%= avg_participation(@student.daily_grades) %>%</h4>
-          <h4>Quizzes: <%= @student.daily_grades.average(:quiz).to_i %>%</h4>
-          <h4>Midterm/Final: <%= @student.daily_grades.average(:exam).to_i %>%</h4>
+          <h4>Homework: <%= avg_homework(@student_daily_grades) %>%</h4>
+          <h4>Participation: <%= avg_participation(@student_daily_grades) %>%</h4>
+          <h4>Quizzes: <%= @student_daily_grades.average(:quiz).to_i %>%</h4>
+          <h4>Midterm/Final: <%= @student_daily_grades.average(:exam).to_i %>%</h4>
         </div>
       </div>
     </div>

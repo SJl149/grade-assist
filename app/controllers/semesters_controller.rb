@@ -1,13 +1,16 @@
 class SemestersController < ApplicationController
   def index
+    @semesters = Semester.all
+    @holidays = Holiday.all
   end
 
   def show
+    @semester = Semester.find(params[:id])
   end
 
   def new
     @semester = Semester.new
-    5.times { @semester.holidays.build }
+    4.times { @semester.holidays.build }
   end
 
   def create

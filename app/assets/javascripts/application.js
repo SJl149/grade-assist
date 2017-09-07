@@ -18,13 +18,3 @@
 //= require best_in_place
 //= require cocoon
 //= require_tree .
-
-$(document).on('turbolinks:load', function() {
-    $('.datepicker').datepicker({
-      autoclose: true,
-      daysOfWeekDisabled: [0,5,6],
-      format: 'yyyy/mm/dd'
-    }).on('changeDate', function() {
-      $('.grade-time-select').submit();
-    });
-});

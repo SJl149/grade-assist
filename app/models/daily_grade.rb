@@ -9,4 +9,8 @@ class DailyGrade < ActiveRecord::Base
     date = date.to_date
     where(classdate: date.beginning_of_day..date.end_of_day).first
   end
+
+  def self.for_semester(semester)
+    where(classdate: semester.start_date..semester.end_date)
+  end
 end

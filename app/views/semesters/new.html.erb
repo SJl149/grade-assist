@@ -1,20 +1,30 @@
-<h1>Create a Semester Schedule</h1>
+<h1 class="text-center">Create a Semester Schedule</h1>
 <div class="panel panel-default">
   <div class="panel-body">
     <br>
-    <br>
-    <%= simple_form_for @semester do |f| %>
+    <%= simple_form_for @semester, html: { class: 'form-vertical' } do |f| %>
       <%= f.input :name %>
-      <%= f.label :start_date %><br>
-      <%= f.text_field :start_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
-      <%= f.label :end_date %><br>
-      <%= f.text_field :end_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
-      <div id="holidays">
-        <%= f.simple_fields_for :holidays do |holiday| %>
-          <%= render 'holiday_fields', f: holiday %>
-        <% end %>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :start_date %><br>
+            <%= f.text_field :start_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+            <%= f.label :end_date %><br>
+            <%= f.text_field :end_date, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+          </div>
+          <div class="col-md-6">
+            <div id="holidays">
+              <%= f.simple_fields_for :holidays do |holiday| %>
+                <%= render 'holiday_fields', f: holiday %>
+                <%= link_to_add_association 'add holiday', f, :holidays, class: 'btn btn-success' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-      <%= f.button :submit %>
+      <div class="col-md-12">
+        <%= f.button :submit %>
+      </div>
     <% end %>
   </div>
 </div>
