@@ -3,8 +3,11 @@ class DailyGradesController < ApplicationController
 
   def index
     @student = Student.find(params[:student])
-    @daily_grades = DailyGrade.where(student_id: @student)
-    @course = @student.courses.first
+    @current_course = @student.courses.find_by(current: true)
+    @past_courses = @student.courses.where(current: false)
+    @current_semester = @current_course.semesters.first
+    @current_daily_grades = @student.daily_grades.for_semester(@current_semester)
+    @past_daily_grades = @student.daily_grades.for_past_semesters(@current_semester)
   end
 
   def show

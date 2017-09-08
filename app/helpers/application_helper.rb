@@ -30,10 +30,20 @@ module ApplicationHelper
   end
 
   def avg_participation(grades)
-    ((grades.where(participation: 0).count * 100) + (grades.where(participation: 1).count * 50)) / grades.count(:participation)
+    total = grades.count(:participation)
+    if total == 0
+      return 0
+    else
+      ((grades.where(participation: 0).count * 100) + (grades.where(participation: 1).count * 50)) / total
+    end
   end
 
   def avg_homework(grades)
-    ((grades.where(homework: 0).count * 100) + (grades.where(homework: 1).count * 50)) / grades.count(:homework)
+    total = grades.count(:homework)
+    if total == 0
+      return 0
+    else
+      ((grades.where(homework: 0).count * 100) + (grades.where(homework: 1).count * 50)) / total
+    end
   end
 end
