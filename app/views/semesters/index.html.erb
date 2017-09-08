@@ -7,9 +7,13 @@
     <div>
       <p><%= semester.name %></p>
     </div>
+
+  <% end %>
+
+  <% semesters.each do |semester| %>
     <% semester.holidays.each do |holiday| %>
       <div>
-        <p>Holiday</p>
+        <p><%= holiday.period %></p>
       </div>
     <% end %>
   <% end %>
