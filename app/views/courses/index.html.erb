@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <div class="panel panel-body">
     <h1 class="text-center">Past Classes</h1>
-    <% unless @courses.nil? %>
-      <% @courses.each do |course| %>
-      <h3><%= link_to course.name, course %></h3>
+    <% unless @past_courses.nil? %>
+      <% @past_courses.each do |past_course| %>
+      <h3><%= link_to past_course.name, past_course %> ( <%= past_course.semesters.first.start_date.strftime("%-m/%-d") %> - <%= past_course.semesters.first.end_date.strftime("%-m/%-d") %> )</h3>
       <% end %>
     <% end %>
   </div>

@@ -1,1 +1,7 @@
 <h1>Update <%= @course.name %></h1>
+<%= simple_form_for @course do |f| %>
+  <%= f.input :name %>
+  <%= f.label "Change current class status" %>
+  <%= f.input :current, as: :boolean %>
+  <%= f.button :submit %>
+<% end %>

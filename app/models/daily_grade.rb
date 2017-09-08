@@ -13,4 +13,8 @@ class DailyGrade < ActiveRecord::Base
   def self.for_semester(semester)
     where(classdate: semester.start_date..semester.end_date)
   end
+
+  def self.for_past_semesters(semester)
+    where.not(classdate: semester.start_date..semester.end_date)
+  end
 end
