@@ -1,6 +1,6 @@
 <h2>New Class</h2>
 <hr>
-<%= simple_form_for @course, html: { class: 'form-vertical' } do |f| %>
+<%= simple_form_for @course do |f| %>
   <div class="row">
     <div class="col-md-12">
       <div class="row">
@@ -14,12 +14,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <p><strong>Students</strong></p>
           <div id="students">
             <%= f.simple_fields_for :enrollments do |enrollment| %>
               <%= render 'enrollment_fields', f: enrollment %>
-              <%= link_to_add_association 'Add student', f, :enrollments, class: 'btn btn-success' %>
+              <%= link_to_add_association 'Add', f, :enrollments, class: 'btn btn-success' %>
             <% end %>
           </div>
           <%= f.button :submit %>

@@ -1,8 +1,8 @@
-<div class="nested-fields enrollment-tag-fields">
+<div class="nested-fields enrollment-tag-fields form-inline">
   <div class="student_from_list">
     <%= f.association :student, label: false, :label_method => lambda { |student| "#{student.family_name}, #{student.given_name}"}, collection: Student.order(:family_name), prompt: 'Choose an existing student' %>
-    <%= link_to_add_association 'Or create new student', f, :student, class: 'btn btn-primary' %>
+    <%= link_to_remove_association 'Remove', f, class: 'btn btn-danger' %>
+    <%= link_to_add_association 'New Student', f, :student, class: 'btn btn-primary' %>
     <br>
-    <%= link_to_remove_association 'Remove student', f, class: 'btn btn-warning' %>
   </div>
 </div>

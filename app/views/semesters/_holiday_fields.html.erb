@@ -1,6 +1,6 @@
 <div class="nested-fields holiday-tag-fields">
   <div class="holiday_from_list">
-    <%= f.label :period, "Holiday" %><br>
+    <%= f.input :name, label: 'Holiday name' %>
     <%= f.text_field :period, data: { provide:'datepicker' }, class: 'small-text-field datepicker' %>
     <%= link_to_remove_association "", f, class: 'glyphicon glyphicon-remove btn btn-warning' %>
   </div>

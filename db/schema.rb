@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821214221) do
+ActiveRecord::Schema.define(version: 20170913132948) do
 
   create_table "course_semesters", force: :cascade do |t|
     t.integer  "course_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170821214221) do
     t.integer  "semester_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "name"
   end
 
   add_index "holidays", ["semester_id"], name: "index_holidays_on_semester_id"
@@ -76,10 +77,11 @@ ActiveRecord::Schema.define(version: 20170821214221) do
 
   create_table "students", force: :cascade do |t|
     t.string   "nickname"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "family_name"
     t.string   "given_name"
+    t.integer  "daily_grades_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|

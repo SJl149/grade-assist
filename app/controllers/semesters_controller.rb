@@ -29,6 +29,6 @@ class SemestersController < ApplicationController
 
   def semester_params
     params.require(:semester).permit(:name, :start_date, :end_date,
-      holidays_attributes: [:id, :_destroy, :period])
+      holidays_attributes: [:id, :_destroy, :period, :name])
   end
 end
