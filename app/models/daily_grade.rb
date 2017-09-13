@@ -1,5 +1,5 @@
 class DailyGrade < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :semester
 
   enum attendance: [:present, :late, :absent]
   enum participation: [:good, :avg, :poor]

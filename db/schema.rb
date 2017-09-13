@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913132948) do
-
-  create_table "course_semesters", force: :cascade do |t|
-    t.integer  "course_id"
-    t.integer  "semester_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "course_semesters", ["course_id"], name: "index_course_semesters_on_course_id"
-  add_index "course_semesters", ["semester_id"], name: "index_course_semesters_on_semester_id"
+ActiveRecord::Schema.define(version: 20170913175121) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +19,8 @@ ActiveRecord::Schema.define(version: 20170913132948) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "current",    default: true
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"
@@ -40,13 +32,13 @@ ActiveRecord::Schema.define(version: 20170913132948) do
     t.string   "comment"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "student_id"
     t.integer  "participation"
     t.integer  "exam"
     t.datetime "classdate"
+    t.integer  "semester_id"
   end
 
-  add_index "daily_grades", ["student_id"], name: "index_daily_grades_on_student_id"
+  add_index "daily_grades", ["semester_id"], name: "index_daily_grades_on_semester_id"
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "student_id"
@@ -59,13 +51,10 @@ ActiveRecord::Schema.define(version: 20170913132948) do
 
   create_table "holidays", force: :cascade do |t|
     t.datetime "period"
-    t.integer  "semester_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "name"
   end
-
-  add_index "holidays", ["semester_id"], name: "index_holidays_on_semester_id"
 
   create_table "semesters", force: :cascade do |t|
     t.string   "name"
@@ -73,7 +62,10 @@ ActiveRecord::Schema.define(version: 20170913132948) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "student_id"
   end
+
+  add_index "semesters", ["student_id"], name: "index_semesters_on_student_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "nickname"
