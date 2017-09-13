@@ -27,7 +27,7 @@
         <td><%= avg_homework(@student_daily_grades) %>%</td>
         <td><%= @student_daily_grades.average(:quiz).to_i %>%</td>
         <td><%= @student_daily_grades.average(:exam).to_i %>%</td>
-        <td><% if @student_daily_grades.where.not(comment: [nil, ""]).any? %><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><% end %></td>
+        <td><% if @student_daily_grades.where.not(comment: [nil, ""]).any? %><span class="glyphicon glyphicon-ok" aria-hidden="true"> </span><% end %></td>
       </tr>
     <% end %>
   </tbody>
