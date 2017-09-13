@@ -13,7 +13,7 @@
           <tr>
             <td><%= link_to student.nickname, student %></td>
             <td><%= student.family_name %>, <%= student.given_name %></td>
-            <td><%= student.courses.first.name %></td>
+            <td><%= student.courses.all.collect { |course| course.name }.to_sentence(two_words_connector: ', ', last_word_connector: ', ') %></td>
           </tr>
         <% end %>
       </tbody>

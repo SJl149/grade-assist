@@ -66,7 +66,8 @@ semester = Semester.create(
 #Create Holidays
 Holiday.create(
   period: 8.days.ago.beginning_of_day,
-  semester: semester
+  semester: semester,
+  name: 'Founders Day'
 )
 
 # Create Courses
