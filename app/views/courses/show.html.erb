@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <% @students.each do |student| %>
-      <% @student_daily_grades = student.daily_grades.for_semester(@semester) %>
+      <% @student_daily_grades = student.semesters.find_by(name: @semester).daily_grades %>
       <tr>
         <td><%= link_to student.nickname, student %></td>
         <td><%= student.family_name %>, <%= student.given_name %></td>

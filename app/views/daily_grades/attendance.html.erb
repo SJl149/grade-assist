@@ -20,10 +20,10 @@
         </tr>
       </thead>
       <tbody>
-        <%= content_tag :div, id: "start_end_dates", data: { start_date: @course.semesters.first.start_date.to_date, end_date: @course.semesters.first.end_date.to_date } do %>
+        <%= content_tag :div, id: "start_end_dates", data: { start_date: @course.start_date.to_date, end_date: @course.end_date.to_date } do %>
         <% end %>
         <% @students.each do |student| %>
-          <% @student_daily_grade = student.daily_grades.for_date(@daily_grades_date) %>
+          <% @student_daily_grade = student.semesters.find_by(name: @course.name).daily_grades.for_date(@daily_grades_date) %>
           <tr>
             <td><%= student.nickname %></td>
             <td id="student_<%= student.id %>"><span class="label label-<%= attendance_label(@student_daily_grade.attendance) %>" ><%= @student_daily_grade.attendance %></span></td>
