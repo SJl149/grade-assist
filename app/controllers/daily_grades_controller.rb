@@ -6,7 +6,7 @@ class DailyGradesController < ApplicationController
     @current_course = @student.courses.find_by(current: true)
     @past_courses = @student.courses.where(current: false)
 
-    @current_semester = @student.semesters.find_by(name: @current_course.name )
+    @current_semester = @student.semesters.find_by(name: @current_course.name)
     @current_daily_grades = @current_semester.daily_grades
     # @past_daily_grades = @student.daily_grades.for_past_semesters(@current_semester)
   end
@@ -105,7 +105,7 @@ class DailyGradesController < ApplicationController
   def att_part_hw_grades
     @course = Course.find(params[:course_id])
     @students = @course.students.order(:family_name)
-    @daily_grades_date = params[:date]&.to_date || @students.first.semesters.find_by(name: @course.name).start_date.to_date
+    @daily_grades_date = params[:date]&.to_date || @course.start_date.to_date
   end
 
   def att_part_hw_update_grades

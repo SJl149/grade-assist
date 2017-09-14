@@ -6,5 +6,5 @@ class Semester < ActiveRecord::Base
     self.start_date
   end
 
-
+  accepts_nested_attributes_for :daily_grades, allow_destroy: true
 end

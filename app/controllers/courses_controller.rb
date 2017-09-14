@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.new(course_params)
 
     if @course.save
-      # create_student_dailygrades(@course)
+      create_student_dailygrades(@course)
       flash[:notice] = "Course was created successfully."
       redirect_to root_path
     else

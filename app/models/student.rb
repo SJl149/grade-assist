@@ -6,4 +6,5 @@ class Student < ActiveRecord::Base
   validates :given_name, presence: true
   validates :family_name, presence: true
 
+  accepts_nested_attributes_for :semesters, allow_destroy: true
 end
