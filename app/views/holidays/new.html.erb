@@ -1,0 +1,19 @@
+<h1 class="text-center">Add a Holiday</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <br>
+    <%= simple_form_for @holiday, html: { class: 'form-vertical' } do |f| %>
+
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :name %>
+            <%= f.label :period %><br>
+            <%= f.text_field :period, data:{ provide:'datepicker' }, class: 'small-text-field datepicker' %><br>
+          </div>
+        </div>
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

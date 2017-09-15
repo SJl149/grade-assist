@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :users, :controllers => {registrations: 'registrations'}
 
   get 'about' => 'welcome#about'
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :students
   resources :semesters
   resources :daily_grades
-  resources :holidays
+  resources :events
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root
