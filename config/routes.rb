@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   resources :courses
-  resources :semesters
 
   get 'attendance' => 'daily_grades#attendance'
   patch 'attendance' => 'daily_grades#update_attendance'
@@ -13,7 +12,9 @@ Rails.application.routes.draw do
   patch 'participation' => 'daily_grades#update_participation'
 
   resources :students
+  resources :semesters
   resources :daily_grades
+  resources :holidays
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root
