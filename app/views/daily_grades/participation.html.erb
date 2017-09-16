@@ -4,7 +4,7 @@
     <%= form_tag participation_path, class: 'grade-time-select', method: :get do %>
       <%= hidden_field_tag :course_id, @course.id %>
       <%= label_tag :date, 'Select a date' %>
-      <%= text_field_tag :date, @daily_grades_date, class: 'form-control small-text-field datepicker' %>
+      <%= text_field_tag :date, @daily_grades_date, class: 'form-control small-text-field grade-datepicker' %>
     <% end %>
   </div>
   <div class="panel-body">
@@ -18,10 +18,10 @@
         </tr>
       </thead>
       <tbody>
-        <%= content_tag :div, id: "start_end_dates", data: { start_date: @course.semesters.first.start_date.to_date, end_date: @course.semesters.first.end_date.to_date } do %>
+        <%= content_tag :div, id: "start_end_dates", data: { start_date: @course.start_date.to_date, end_date: @course.end_date.to_date } do %>
         <% end %>
         <% @students.each do |student| %>
-          <% @student_daily_grade = student.daily_grades.for_date(@daily_grades_date) %>
+          <%@student_daily_grade = student.semesters.find_by(name: @course.name).daily_grades.for_date(@daily_grades_date) %>
           <tr>
             <td><%= student.nickname %></td>
             <td id="student_<%= student.id %>"><span class="label label-<%= participation_label(@student_daily_grade.participation) %>"><%= @student_daily_grade.participation %></span></td>

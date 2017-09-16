@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  
   devise_for :users, :controllers => {registrations: 'registrations'}
 
   get 'about' => 'welcome#about'
   resources :courses
-  resources :semesters
 
   get 'attendance' => 'daily_grades#attendance'
   patch 'attendance' => 'daily_grades#update_attendance'
@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   patch 'participation' => 'daily_grades#update_participation'
 
   resources :students
+  resources :semesters
   resources :daily_grades
+  resources :events
 
   authenticated :user do
     root 'welcome#dashboard', as: :authenticate_root

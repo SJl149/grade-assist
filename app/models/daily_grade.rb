@@ -1,5 +1,7 @@
 class DailyGrade < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :semester
+
+  default_scope {order('classdate ASC')}
 
   enum attendance: [:present, :late, :absent]
   enum participation: [:good, :avg, :poor]

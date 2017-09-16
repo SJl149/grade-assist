@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
-    @semester = @course.semesters.first
+    @semester = @course.name
     @students = @course.students.order(:family_name)
   end
 
@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @course.enrollments.build
-    @course.course_semesters.build
+    # @course.course_semesters.build
   end
 
   def create
@@ -59,16 +59,28 @@ class CoursesController < ApplicationController
   def create_student_dailygrades(course)
     # Generate course schedule(without holidays)
     course_schedule = []
-    start_date = course.semesters.first.start_date.to_date
-    end_date = course.semesters.first.end_date.to_date
+    start_date = course.start_date.to_date
+    end_date = course.end_date.to_date
     (start_date..end_date).each do |schedule_day|
       course_schedule << schedule_day if [1,2,3,4].include?(schedule_day.wday)
     end
+
     # Create daily_grades for each student for each classdate
+    start_date = course.start_date
+    end_date = course.end_date
+    course_name = course.name
+
     course.students.each do |student|
+      # Is this correct?
+      semester = Semester.create(
+                   student: student,
+                   start_date: start_date,
+                   end_date: end_date,
+                   name: course_name
+                 )
       course_schedule.each do |classdate|
         DailyGrade.create(
-          student: student,
+          semester: semester,
           classdate: classdate
         )
       end
@@ -79,12 +91,13 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(
-      :name, :current,
+      :name, :current, :start_date, :end_date,
       enrollments_attributes: [:id, :_destroy, :student_id, :course_id,
-        student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname]
-      ],
-      course_semesters_attributes: [:id, :_detroy, :course_id, :semester_id,
-        semester_attributes: [:id, :_destroy, :name]
+        student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname,
+          semesters_attributes: [:id, :_destroy, :student_id, :name, :start_date, :end_date,
+            daily_grades_attributes: [:id, :_destroy, :semester, :classdate]
+          ]
+        ]
       ])
   end
 end
