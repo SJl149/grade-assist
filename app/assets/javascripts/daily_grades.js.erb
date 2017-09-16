@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
   var start_date = ($('#start_end_dates').data('startDate'));
   var end_date = ($('#start_end_dates').data('endDate'));
 
-  $('.datepicker').datepicker({
+  $('.grade-datepicker').datepicker({
     autoclose: true,
     daysOfWeekDisabled: [0,5],
     startDate: start_date,
@@ -13,4 +13,5 @@ $(document).on('turbolinks:load', function() {
   }).on('changeDate', function() {
     $('.grade-time-select').submit();
   });
+    console.log(start_date);
 });
