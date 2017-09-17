@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915194904) do
+ActiveRecord::Schema.define(version: 20170917145310) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -54,7 +54,10 @@ ActiveRecord::Schema.define(version: 20170915194904) do
     t.datetime "updated_at", null: false
     t.string   "name"
     t.datetime "eventdate"
+    t.integer  "user_id"
   end
+
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "holidays", force: :cascade do |t|
     t.datetime "period"

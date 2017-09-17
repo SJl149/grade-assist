@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  $('.datepicker').datepicker({
+  $('.course-datepicker').datepicker({
      autoclose: true,
      daysOfWeekDisabled: [0,5],
      orientation: "auto bottom",
