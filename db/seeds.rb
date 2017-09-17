@@ -17,6 +17,17 @@ user = User.new(
 user.skip_confirmation!
 user.save!
 
+# Create Admin User
+admin = User.new(
+  username: 'Admin',
+  email: 'admin@email.com',
+  password: 'password',
+  password_confirmation: 'password',
+  role: 2
+)
+admin.skip_confirmation!
+admin.save!
+
 # Create Students
 30.times do
   student = Student.new(
@@ -29,9 +40,9 @@ end
 students_group1 = Student.first(15)
 students_group2 = Student.all - students_group1
 
-#Create Holidays
+#Create Event
 Event.create(
-  period: 8.days.ago.beginning_of_day,
+  eventdate: 8.days.ago.beginning_of_day,
   name: 'Founders Day'
 )
 
@@ -92,13 +103,13 @@ course2 = Course.create(
   user: user
 )
 
-# Create and Add Students to course1
+# Create and Add Students to course2
 students_group2.each do |student|
   Enrollment.create(
     course: course2,
     student: student
   )
-  # Create Semester for course1
+  # Create Semester for course2
   semester2 = Semester.create(
     name: course2.name,
     start_date: course2.start_date,
@@ -106,7 +117,7 @@ students_group2.each do |student|
     student: student
   )
 
-  # Create DailyGrades for students in semester(course1)
+  # Create DailyGrades for students in semester(course2)
   x = [0, 1, 2]
   class_days.each do |i|
     if i == 8
@@ -137,4 +148,4 @@ puts "#{Course.count} courses created"
 puts "#{Enrollment.count} enrollments created"
 puts "#{DailyGrade.count} daily_grades created"
 puts "#{Semester.count} semesters created"
-puts "#{Event.count} holidays created"
+puts "#{Event.count} events created"
