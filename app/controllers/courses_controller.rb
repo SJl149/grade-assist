@@ -12,7 +12,6 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @course.enrollments.build
-    # @course.course_semesters.build
   end
 
   def create
@@ -71,7 +70,6 @@ class CoursesController < ApplicationController
     course_name = course.name
 
     course.students.each do |student|
-      # Is this correct?
       semester = Semester.create(
                    student: student,
                    start_date: start_date,

@@ -4,7 +4,7 @@ Course.destroy_all
 Enrollment.destroy_all
 DailyGrade.destroy_all
 Semester.destroy_all
-Holiday.destroy_all
+Event.destroy_all
 
 # Create User
 user = User.new(
@@ -30,7 +30,7 @@ students_group1 = Student.first(15)
 students_group2 = Student.all - students_group1
 
 #Create Holidays
-Holiday.create(
+Event.create(
   period: 8.days.ago.beginning_of_day,
   name: 'Founders Day'
 )
@@ -137,4 +137,4 @@ puts "#{Course.count} courses created"
 puts "#{Enrollment.count} enrollments created"
 puts "#{DailyGrade.count} daily_grades created"
 puts "#{Semester.count} semesters created"
-puts "#{Holiday.count} holidays created"
+puts "#{Event.count} holidays created"

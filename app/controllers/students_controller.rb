@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @current_course = @student.courses.find_by(current: true)
 
-    @semesters = @student.semesters.all
+    @semesters = @student.semesters.order('start_date DESC')
   end
 
   def index

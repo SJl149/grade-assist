@@ -3,7 +3,7 @@
     <h1 class="text-center">Past Classes</h1>
     <% unless @past_courses.nil? %>
       <% @past_courses.each do |past_course| %>
-      <h3><%= link_to past_course.name, past_course %> ( <%= past_course.start_date.strftime("%-m/%-d") %> - <%= past_course.end_date.strftime("%-m/%-d") %> )</h3>
+      <h3><%= link_to past_course.name, past_course %> ( <%= past_course.start_date.strftime("%-m/%-d/%y") %> - <%= past_course.end_date.strftime("%-m/%-d/%y") %> )</h3>
       <% end %>
     <% end %>
   </div>

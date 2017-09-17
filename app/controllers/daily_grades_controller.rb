@@ -105,7 +105,12 @@ class DailyGradesController < ApplicationController
   def att_part_hw_grades
     @course = Course.find(params[:course_id])
     @students = @course.students.order(:family_name)
-    @daily_grades_date = params[:date]&.to_date || @course.start_date.to_date
+    semester = Semester.find_by(name: @course.name)
+    if Date.today >= semester.start_date && Date.today <= semester.end_date
+      @daily_grades_date = Date.today.to_date
+    else
+      @daily_grades_date = params[:date]&.to_date || @course.start_date.to_date
+    end
   end
 
   def att_part_hw_update_grades
@@ -119,6 +124,6 @@ class DailyGradesController < ApplicationController
   private
 
   def daily_grade_params
-    params.require(:daily_grade).permit(:attendance, :participation, :homework, :quiz, :comment, :exam, :classdate)
+    params.require(:daily_grade).permit(:attendance, :participation, :homework, :quiz, :comment, :exam, :classdate, :date)
   end
 end
