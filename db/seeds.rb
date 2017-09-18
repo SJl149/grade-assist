@@ -43,7 +43,8 @@ students_group2 = Student.all - students_group1
 #Create Event
 Event.create(
   eventdate: 8.days.ago.beginning_of_day,
-  name: 'Founders Day'
+  name: 'Founders Day',
+  user: user
 )
 
 # Create M,T,W,Th schedule using class_days array and .days.ago assuming seed is run on Wed.
