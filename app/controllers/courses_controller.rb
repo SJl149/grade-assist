@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.new(course_params)
 
     if @course.save
-      create_student_dailygrades(@course)
+      CreateStudentDailygrades.new(@course).call
       flash[:notice] = "Course was created successfully."
       redirect_to root_path
     else
@@ -52,36 +52,6 @@ class CoursesController < ApplicationController
     else
       flash.now[:alert] = "There was a problem deleting the course."
       redirect_to root_path
-    end
-  end
-
-  def create_student_dailygrades(course)
-    # Generate course schedule(without holidays)
-    course_schedule = []
-    start_date = course.start_date.to_date
-    end_date = course.end_date.to_date
-    (start_date..end_date).each do |schedule_day|
-      course_schedule << schedule_day if [1,2,3,4].include?(schedule_day.wday)
-    end
-
-    # Create daily_grades for each student for each classdate
-    start_date = course.start_date
-    end_date = course.end_date
-    course_name = course.name
-
-    course.students.each do |student|
-      semester = Semester.create(
-                   student: student,
-                   start_date: start_date,
-                   end_date: end_date,
-                   name: course_name
-                 )
-      course_schedule.each do |classdate|
-        DailyGrade.create(
-          semester: semester,
-          classdate: classdate
-        )
-      end
     end
   end
 
