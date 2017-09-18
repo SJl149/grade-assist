@@ -27,6 +27,9 @@ group :production do
  gem 'best_in_place', '~> 3.1'
  gem 'bootstrap-datepicker-rails'
  gem 'simple_calendar', '~> 2.0', '>= 2.0.6'
+ gem 'rubyzip', '= 1.0.0'
+ gem 'axlsx', '2.0.1'
+ gem 'axlsx_rails'
 
  group :development, :test do
    gem 'byebug'

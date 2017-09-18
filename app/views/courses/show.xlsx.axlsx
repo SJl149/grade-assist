@@ -1,0 +1,19 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "QCC POE") do |sheet|
+  sheet.add_row ["Student", "Name", "Absences", "Participation", "Homework", "Quizzes", "Exams"]
+  @students.each do |student|
+    legal_name = student.given_name + " " + student.family_name
+    student_daily_grades = student.semesters.find_by(name: @semester).daily_grades
+    student_attendance = student_daily_grades.where(attendance: 2).count + (student_daily_grades.where(attendance: 1).count / 3)
+
+    sheet.add_row [
+      student.nickname,
+      legal_name,
+      student_attendance,
+      avg_participation(student_daily_grades),
+      avg_homework(student_daily_grades),
+      student_daily_grades.average(:quiz).to_i,
+      student_daily_grades.average(:exam).to_i
+    ]
+  end
+end
