@@ -1,0 +1,7 @@
+<h1>Update <%= @student.given_name %>, <%= @student.family_name %></h1>
+<%= simple_form_for @student do |f| %>
+  <%= f.input :nickname %>
+  <%= f.input :given_name %>
+  <%= f.input :family_name %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

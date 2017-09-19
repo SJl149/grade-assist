@@ -38,6 +38,13 @@ GEM
     arel (6.0.4)
     autoprefixer-rails (7.1.1.3)
       execjs
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
+    axlsx_rails (0.5.1)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bcrypt (3.1.11)
     best_in_place (3.1.1)
       actionpack (>= 3.2)
@@ -86,6 +93,7 @@ GEM
       thor (~> 0.14)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    htmlentities (4.3.4)
     i18n (0.8.6)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
@@ -111,6 +119,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -173,6 +183,7 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     ruby-graphviz (1.2.3)
+    rubyzip (1.0.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -228,6 +239,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  axlsx (= 2.0.1)
+  axlsx_rails
   best_in_place (~> 3.1)
   bootstrap-datepicker-rails
   bootstrap-sass
@@ -242,10 +255,12 @@ DEPENDENCIES
   jquery-rails
   pg
   pry-rails
+  pundit
   rails (= 4.2.8)
   rails-erd
   rails_12factor
   rspec-rails
+  rubyzip (= 1.0.0)
   sass-rails (~> 5.0)
   shoulda
   simple_calendar (~> 2.0, >= 2.0.6)

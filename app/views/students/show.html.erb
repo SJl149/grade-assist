@@ -6,7 +6,7 @@
 <div class="row">
   <% @semesters.each do |semester| %>
     <div class="col-md-6">
-      <div class="panel panel-<%= semester_panel_label(semester, @current_course) %>">
+      <div class="panel panel-<%= semester_panel_label(semester, @courses) %>">
         <div class="panel-heading">
           <h3 class="panel-title text-center"><%= semester.name %> (<%= semester.start_date.strftime("%-m/%-d/%y") %> - <%= semester.end_date.strftime("%-m/%-d/%y") %>)</h3>
         </div>
@@ -42,8 +42,10 @@
   <div class="panel-body">
     <div class="col-md-4 col-md-offset-4">
       <div class="btn-group btn-group-justified">
-        <%= link_to "Check Record", { :controller => "daily_grades", :action => "index", :student => @student.id }, class: "btn btn-primary" %>
-        <%= link_to "Current Course", @current_course, class: "btn btn-primary" %>
+        <% if authorized_for_dailygrades(@not_enrolled, @current_semester) %>
+          <%= link_to "Check Record", { :controller => "daily_grades", :action => "index", :student => @student.id }, class: "btn btn-primary" %>
+          <%= link_to "Current Course", @current_course, class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>
