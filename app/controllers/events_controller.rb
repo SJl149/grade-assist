@@ -11,8 +11,7 @@ class EventsController < ApplicationController
     @event = current_user.events.new(event_params)
 
     if @event.save
-      flash[:notice] = "New event was created successfully."
-      redirect_to root_path
+      redirect_to events_path
     else
       flash.now[:alert] = "Error creating the event. Please try again."
       render :new
@@ -20,6 +19,15 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:id])
+
+    if @event.destroy
+      flash[:notice] = "#{@event.name} was deleted successfully."
+      redirect_to events_path
+    else
+      flash.now[:alert] = "There was a problem deleting the event."
+      redirect_to events_path
+    end
   end
 
   private
