@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.new(course_params)
 
     if @course.save
-      CreateStudentDailygrades.new(@course).call
+      CreateStudentDailygrades.new(@course, current_user).call
       flash[:notice] = "Course was created successfully."
       redirect_to root_path
     else
@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
       :name, :current, :start_date, :end_date,
       enrollments_attributes: [:id, :_destroy, :student_id, :course_id,
         student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname,
-          semesters_attributes: [:id, :_destroy, :student_id, :name, :start_date, :end_date,
+          semesters_attributes: [:id, :_destroy, :student_id, :name, :teacher_id, :start_date, :end_date,
             daily_grades_attributes: [:id, :_destroy, :semester, :classdate]
           ]
         ]

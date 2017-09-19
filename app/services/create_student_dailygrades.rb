@@ -1,7 +1,8 @@
 
 class CreateStudentDailygrades
-  def initialize(course)
+  def initialize(course, current_user)
     @course = course
+    @user_id = current_user.id
   end
 
   def call
@@ -23,7 +24,8 @@ class CreateStudentDailygrades
                    student: student,
                    start_date: start_date,
                    end_date: end_date,
-                   name: course_name
+                   name: course_name,
+                   teacher_id: @user_id
                  )
       course_schedule.each do |classdate|
         DailyGrade.create(

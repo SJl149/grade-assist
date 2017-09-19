@@ -29,14 +29,6 @@ module ApplicationHelper
     end
   end
 
-  def semester_panel_label(semester, current_course)
-    if semester.name == current_course.name
-      "info"
-    else
-      "default"
-    end
-  end
-
   def avg_participation(grades)
     total = grades.count(:participation)
     if total == 0
