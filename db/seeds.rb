@@ -69,7 +69,8 @@ students_group1.each do |student|
     name: course1.name,
     start_date: course1.start_date,
     end_date: course1.end_date,
-    student: student
+    student: student,
+    teacher_id: user.id
   )
 
   # Create DailyGrades for students in semester(course1)
@@ -115,7 +116,8 @@ students_group2.each do |student|
     name: course2.name,
     start_date: course2.start_date,
     end_date: course2.end_date,
-    student: student
+    student: student,
+    teacher_id: user.id
   )
 
   # Create DailyGrades for students in semester(course2)
