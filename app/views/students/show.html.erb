@@ -14,8 +14,8 @@
           <div class="row">
             <div class="col-md-5">
               <h3 class="text-primary">Grades</h3>
-              <h4>Homework: <%= avg_homework(semester.daily_grades) %>%</h4>
-              <h4>Participation: <%= avg_participation(semester.daily_grades) %>%</h4>
+              <h4>Homework: <%= semester.daily_grades.average(:homework).to_i %>%</h4>
+              <h4>Participation: <%= semester.daily_grades.average(:participation).to_i %>%</h4>
               <h4>Quizzes: <%= semester.daily_grades.average(:quiz).to_i %>%</h4>
               <h4>Exams/Projects: <%= semester.daily_grades.average(:exam).to_i %>%</h4>
             </div>

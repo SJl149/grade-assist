@@ -15,35 +15,18 @@ module ApplicationHelper
 
   def participation_label(grade)
     case grade
-    when 'good' then "success"
-    when 'avg' then "warning"
+    when 66..100 then "success"
+    when 34..65 then "warning"
     else "danger"
     end
   end
 
   def homework_label(grade)
     case grade
-    when 'full' then "success"
-    when 'half' then "warning"
+    when 80..100 then "success"
+    when 60..79 then "warning"
     else "danger"
     end
   end
 
-  def avg_participation(grades)
-    total = grades.count(:participation)
-    if total == 0
-      return 0
-    else
-      ((grades.where(participation: 0).count * 100) + (grades.where(participation: 1).count * 50)) / total
-    end
-  end
-
-  def avg_homework(grades)
-    total = grades.count(:homework)
-    if total == 0
-      return 0
-    else
-      ((grades.where(homework: 0).count * 100) + (grades.where(homework: 1).count * 50)) / total
-    end
-  end
 end
