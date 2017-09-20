@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918202708) do
+ActiveRecord::Schema.define(version: 20170920172706) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20170918202708) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
-    t.integer  "role"
+    t.integer  "role",                   default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
