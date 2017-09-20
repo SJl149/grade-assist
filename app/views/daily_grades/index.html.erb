@@ -20,8 +20,8 @@
       <tr class="<%= current_classdate(current_daily_grade.classdate) %>" >
         <td class="text-info"><strong><%= current_daily_grade.classdate.to_date.to_formatted_s(:long) %></strong></td>
         <td><%= best_in_place current_daily_grade, :attendance, as: :select, collection: DailyGrade.attendances.keys.map { |w| [w,w] } %></td>
-        <td><%= best_in_place current_daily_grade, :participation, as: :select, collection: DailyGrade.participations.keys.map { |w| [w,w] } %></td>
-        <td><%= best_in_place current_daily_grade, :homework, as: :select, collection: DailyGrade.homeworks.keys.map { |w| [w,w] } %></td>
+        <td><%= best_in_place current_daily_grade, :participation, html_attrs: { size: '5'} %></td>
+        <td><%= best_in_place current_daily_grade, :homework, html_attrs: { size: '5'} %></td>
         <td><%= best_in_place current_daily_grade, :quiz, html_attrs: { size: '5'} %></td>
         <td><%= best_in_place current_daily_grade, :comment %></td>
         <td><%= best_in_place current_daily_grade, :exam, html_attrs: { size: '5'} %></td>
