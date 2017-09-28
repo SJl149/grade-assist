@@ -10,7 +10,6 @@
 </div>
 <%= month_calendar events: @events do |date, events| %>
   <%= date.strftime("%-m/%-d") %>
-
   <% events.each do |event| %>
     <div>
       <p><%= event.name %> <%= link_to "Delete", event, method: :delete, data: {confirm: "Are you sure you want to delete this event?"}, class: "btn btn-xs btn-danger" %></p>
