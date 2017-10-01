@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+  belongs_to :user
   has_many :enrollments, inverse_of: :student
   has_many :courses, through: :enrollments
   has_many :semesters

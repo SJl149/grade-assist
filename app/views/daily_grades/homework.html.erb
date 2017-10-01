@@ -6,19 +6,18 @@
       <%= label_tag :date, 'Select a date' %>
       <%= text_field_tag :date, @daily_grades_date, class: 'form-control small-text-field grade-datepicker' %>
     <% end %>
-
   </div>
-  <div class="panel-body">
+  <div class="panel-body table-responsive">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>Students</th>
           <th>Status</th>
-          <th>Comments</th>
           <th></th>
           <th>Homework</th>
           <th></th>
           <th class="text-center">Custom Value</th>
+          <th>Comments</th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +28,11 @@
           <tr>
             <td><%= student.nickname %></td>
             <td id="student_<%= student.id %>"><span class="label label-<%= homework_label(@student_daily_grade.homework) %>"><%= @student_daily_grade.homework %> %</span></td>
-            <td><%= best_in_place @student_daily_grade, :comment %></td>
             <td><%= link_to '100%', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: 100}), remote: true, method: :patch, class: "btn btn-success" %></td>
             <td><%= link_to '50%', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: 50}), remote: true, method: :patch, class: "btn btn-warning" %></td>
             <td><%= link_to '0%', homework_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { homework: 0}), remote: true, method: :patch, class: "btn btn-danger" %></td>
             <td class="text-center"><%= best_in_place @student_daily_grade, :homework, html_attrs: { size: '5'} %></td>
+            <td><%= best_in_place @student_daily_grade, :comment %></td>
           </tr>
         <% end %>
       </tbody>

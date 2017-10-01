@@ -10,7 +10,7 @@
         <div class="panel-heading">
           <h3 class="panel-title text-center"><%= semester.name %> (<%= semester.start_date.strftime("%-m/%-d/%y") %> - <%= semester.end_date.strftime("%-m/%-d/%y") %>)</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body student-grades">
           <div class="row">
             <div class="col-md-5">
               <h3 class="text-primary">Grades</h3>
@@ -18,6 +18,9 @@
               <h4>Participation: <%= semester.daily_grades.average(:participation).to_i %>%</h4>
               <h4>Quizzes: <%= semester.daily_grades.average(:quiz).to_i %>%</h4>
               <h4>Exams/Projects: <%= semester.daily_grades.average(:exam).to_i %>%</h4>
+              <% if authorized_for_dailygrades(@not_enrolled, semester) %>
+                <%= link_to "Class Overview", @courses.find_by(name: semester.name), class: "btn btn-primary" %>
+              <% end %>
             </div>
             <div class="col-md-4">
               <h3 class="text-danger">Absences</h3>
@@ -43,8 +46,7 @@
     <div class="col-md-4 col-md-offset-4">
       <div class="btn-group btn-group-justified">
         <% if authorized_for_dailygrades(@not_enrolled, @current_semester) %>
-          <%= link_to "Check Record", { :controller => "daily_grades", :action => "index", :student => @student.id }, class: "btn btn-primary" %>
-          <%= link_to "Current Course", @current_course, class: "btn btn-primary" %>
+          <%= link_to "#{@student.nickname}'s grades for #{@current_semester.name}", { :controller => "daily_grades", :action => "index", :student => @student.id }, class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

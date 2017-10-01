@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :courses
   has_many :events
+  has_many :students
 
   enum role: [:teacher, :office, :admin]
 end

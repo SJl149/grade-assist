@@ -21,7 +21,7 @@
             <li><strong>Current Class</strong> panels have links to grades for current semester's classes.</li>
             <li><span class="text-primary">Past Classes</span> lists all previous classes from past semesters.</li>
             <li><span class="text-primary">Calendar</span> is a simple calendar to create and display events(semester start/end, holidays, exams, projects, etc.)</li>
-            <li><span class="text-primary">Student Records</span> lists all students enrolled at POE.</li>
+            <li><span class="text-primary">Student Records</span> lists all students in your current and past classes.</li>
             <li><span class="text-primary">Create Class</span> creates a new class and adds students.</li>
           </ul>
         </div>
@@ -40,12 +40,12 @@
         <h3>Attendance, Participation, and Homework</h3>
         <p>Used to quickly record grades and attendance.</p>
         <p><strong>Instructions:</strong></p>
-        <ul>
+        <ol>
           <li>Select a date on the top.</li>
           <li>Choose a grade or attendance with the buttons or enter a value on the right.</li>
           <li>Click in the column <strong>Comments</strong> to add a comment for the student.</li>
-        </ul>
-        <p>Please note that if you enter a custom value, the <strong>Status</strong> will not update on the page, but the grade will be saved as you entered.</p>
+        </ol>
+        <p class="text-danger">*<em>Please note that if you enter a custom value, the </em><strong>Status</strong><em> will not update on the page, but the grade will be saved as you entered.</em></p>
       </div>
     </div>
   </div>
@@ -73,10 +73,10 @@
       </div>
       <div class="col-md-5">
         <h3>Student Dashboard</h3>
-        <p>Displays all classes with averaged grades and specific class dates for lates and absences.</p>
-        <p><span class="label label-info">Current course</span> is in dark blue and <span class="label label-default">past courses</span> are light grey.</p>
-        <p>The <span class="label label-primary">Check Record</span> button gives a detailed record of a student's grades for the current semester.</p>
-        <p>The <span class="label label-primary">Current Course</span> button sends you to the student's current class overview page.</p>
+        <p>Displays all classes for a student including averaged grades and lates and absences with specific class dates.</p>
+        <p><span class="label label-info">Current class</span> is in dark blue and <span class="label label-default">past classes</span> are light grey.</p>
+        <p>The <span class="label label-primary">Student's grades for Class</span> button gives a detailed record of a student's grades for the current semester.</p>
+        <p>The <span class="label label-primary">Class Overview</span> button sends you to the student's current class overview page.</p>
       </div>
     </div>
   </div>
@@ -87,6 +87,7 @@
           <h3>Student Record</h3>
           <p>The student record displays the daily grades by class date for a student.</p>
           <p>All grades can be edited and changed. Simply click on the grade, then select the grade or enter the value.</p>
+          <p class="text-danger"><em>*If there are two classes marked current, the class grades for the earliest class that is marked </em><strong>current</strong> <em>will be displayed. If two classes are current, then go to the </em><strong>Class Overview</strong><em> page, click </em><span class="label label-primary">Edit Class</span>,<em> then uncheck the box marked </em><strong>Current Semester's Class</strong>.</p>
         </div>
         <div class="col-md-7">
           <%= image_tag "student-grades.png", height: '400', width: '600' %>

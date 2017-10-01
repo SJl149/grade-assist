@@ -4,7 +4,7 @@ class DailyGradesController < ApplicationController
   def index
     @student = Student.find(params[:student])
     @current_course = @student.courses.find_by(current: true)
-    @past_courses = @student.courses.where(current: false)
+    # @past_courses = @student.courses.where(current: false)
 
     @current_semester = @student.semesters.find_by(name: @current_course.name)
     @current_daily_grades = @current_semester.daily_grades
