@@ -7,16 +7,16 @@
       <%= text_field_tag :date, @daily_grades_date, class: 'form-control small-text-field grade-datepicker' %>
     <% end %>
   </div>
-  <div class="panel-body">
+  <div class="panel-body table-responsive">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>Student</th>
           <th>Status</th>
-          <th>Comments</th>
           <th>Present</th>
           <th>Late</th>
           <th>Absent</th>
+          <th>Comments</th>
         </tr>
       </thead>
       <tbody>
@@ -27,10 +27,10 @@
           <tr>
             <td><%= student.nickname %></td>
             <td id="student_<%= student.id %>"><span class="label label-<%= attendance_label(@student_daily_grade.attendance) %>" ><%= @student_daily_grade.attendance %></span></td>
-            <td><%= best_in_place @student_daily_grade, :comment %></td>
             <td><%= link_to 'Present', attendance_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { attendance: :present}), remote: true, method: :patch, class: "btn btn-success" %></td>
             <td><%= link_to 'Late', attendance_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { attendance: :late}), remote: true, method: :patch, class: "btn btn-warning" %></td>
             <td><%= link_to 'Absent', attendance_path(student_id: student, course_id: @course.id, date: @daily_grades_date, daily_grade: { attendance: :absent}), remote: true, method: :patch, class: "btn btn-danger" %></td>
+            <td><%= best_in_place @student_daily_grade, :comment %></td>
           </tr>
         <% end %>
       </tbody>

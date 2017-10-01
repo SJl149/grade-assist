@@ -1,3 +1,8 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.student-grades {
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+}

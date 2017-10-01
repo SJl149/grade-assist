@@ -66,7 +66,7 @@ class CoursesController < ApplicationController
     params.require(:course).permit(
       :name, :current, :start_date, :end_date,
       enrollments_attributes: [:id, :_destroy, :student_id, :course_id,
-        student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname,
+        student_attributes: [:id, :_destroy, :family_name, :given_name, :nickname, :user_id,
           semesters_attributes: [:id, :_destroy, :student_id, :name, :teacher_id, :start_date, :end_date,
             daily_grades_attributes: [:id, :_destroy, :semester, :classdate]
           ]

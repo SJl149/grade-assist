@@ -1,7 +1,8 @@
-<h1>Update <%= @course.name %></h1>
-<%= simple_form_for @course do |f| %>
-  <%= f.input :name %>
-  <%= f.label "Change Status" %>
-  <%= f.input :current, as: :boolean %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
-<% end %>
+<h1 class="text-center">Update <%= @course.name %></h1>
+<div class="col-md-6 col-md-offset-3">
+  <%= simple_form_for @course do |f| %>
+    <%= f.input :name %>
+    <%= f.input :current, inline_label: "Current Semester's Class", as: :boolean %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>

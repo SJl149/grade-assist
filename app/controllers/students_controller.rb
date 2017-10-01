@@ -16,7 +16,11 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.order(:family_name)
+    if current_user.admin?
+      @students = Student.all
+    else
+      @students = Student.where(user: current_user).order(:family_name)
+    end
   end
 
   def edit

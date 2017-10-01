@@ -33,7 +33,8 @@ admin.save!
   student = Student.new(
     given_name: Faker::Name.unique.first_name,
     family_name: Faker::Name.unique.last_name,
-    nickname: Faker::Ancient.hero + Faker::Number.digit
+    nickname: Faker::Ancient.hero + Faker::Number.digit,
+    user: user
   )
   student.save!
 end
@@ -75,6 +76,7 @@ students_group1.each do |student|
 
   # Create DailyGrades for students in semester(course1)
   x = [0, 1, 2]
+  y = [0, 50, 100]
   class_days.each do |i|
     if i == 8
       DailyGrade.create(
@@ -85,8 +87,8 @@ students_group1.each do |student|
     else
       DailyGrade.create(
         attendance: x.sample,
-        participation: x.sample,
-        homework: x.sample,
+        participation: y.sample,
+        homework: y.sample,
         quiz: 85,
         comment: "Good work today.",
         exam: 90,
@@ -122,6 +124,7 @@ students_group2.each do |student|
 
   # Create DailyGrades for students in semester(course2)
   x = [0, 1, 2]
+  y = [0, 50, 100]
   class_days.each do |i|
     if i == 8
       DailyGrade.create(
@@ -132,8 +135,8 @@ students_group2.each do |student|
     else
       DailyGrade.create(
         attendance: x.sample,
-        participation: x.sample,
-        homework: x.sample,
+        participation: y.sample,
+        homework: y.sample,
         quiz: 85,
         comment: "Good work today.",
         exam: 90,
