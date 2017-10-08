@@ -105,9 +105,7 @@ class DailyGradesController < ApplicationController
   def att_part_hw_grades
     @course = Course.find(params[:course_id])
     @students = @course.students.order(:family_name)
-
-
-    @daily_grades_date = params[:date]&.to_date || date_determiner
+    @daily_grades_date = params[:date]&.to_date || date_selector
   end
 
   def att_part_hw_update_grades
@@ -118,11 +116,13 @@ class DailyGradesController < ApplicationController
     @daily_grade = @semester.daily_grades.find_by(classdate: date.beginning_of_day..date.end_of_day)
   end
 
-  def date_determiner
-    semester = Semester.find_by(name: @course.name)
-
-    if Date.today >= semester.start_date && Date.today <= semester.end_date
-      Date.today.to_date
+  def date_selector
+    date_selection = Date.today.to_date
+    if date_selection >= @course.start_date.to_date && date_selection <= @course.end_date.to_date
+      while [1,2,3,4].include?(date_selection.wday) == false
+        date_selection = date_selection.next_day(1)
+      end
+      date_selection
     else
       @course.start_date.to_date
     end
