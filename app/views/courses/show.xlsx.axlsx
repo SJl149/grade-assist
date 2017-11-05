@@ -10,8 +10,8 @@ wb.add_worksheet(name: "QCC POE") do |sheet|
       student.nickname,
       legal_name,
       student_attendance,
-      avg_participation(student_daily_grades),
-      avg_homework(student_daily_grades),
+      student_daily_grades.average(:participation).to_i,
+      student_daily_grades.average(:homework).to_i,
       student_daily_grades.average(:quiz).to_i,
       student_daily_grades.average(:exam).to_i
     ]
