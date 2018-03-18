@@ -15,6 +15,7 @@ group :production do
    gem 'rails-erd'
  end
 
+
  gem 'sass-rails', '~> 5.0'
  gem 'uglifier', '>= 1.3.0'
  gem 'coffee-rails', '~> 4.1.0'
@@ -34,12 +35,13 @@ group :production do
  gem 'axlsx_rails'
  gem 'pundit'
 
+
  group :development, :test do
    gem 'byebug'
    gem 'spring'
    gem 'rspec-rails'
    gem 'shoulda'
    gem 'faker'
-   gem 'factory_girl_rails'
+   gem 'factory_bot_rails'
    gem 'pry-rails'
  end

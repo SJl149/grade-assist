@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :daily_grade do
     attendance 1
     class_work 1
