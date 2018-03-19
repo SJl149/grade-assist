@@ -13,6 +13,7 @@ group :production do
    gem 'sqlite3'
    gem 'web-console', '~> 2.0'
    gem 'rails-erd'
+   gem 'sorted_routes', '~> 1.0'
  end
 
 
