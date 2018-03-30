@@ -5,7 +5,7 @@ gem 'rails', '4.2.8'
 
 
 group :production do
-   gem 'pg'
+   gem 'pg', '~> 0.18.4'
    gem 'rails_12factor'
  end
 
